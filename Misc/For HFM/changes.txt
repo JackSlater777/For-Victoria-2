@@ -1,0 +1,67 @@
+Country changes:
+- added 20 new TAGs in the Carribean region;
+- Belize starts as a vassal of United Kingdom;
+- Martinique has afro_antillean culture as primary;
+- Peru-Bolivian Confederation starts with military techs like other countries in that region.
+
+Core changes:
+- added new TAG's cores on the map;
+- The Netherlands lost their cores on Curacao and Aruba and can recieve it via decision;
+- Brazil lost a core on Iguatemi and can recieve it via decision;
+
+Province owner changes:
+- Amapa (id2415) is owned by France; Brazil can recieve it back when the "Geneva Arbitration" event fires in 1900 ;
+- Iguatemi (id2420) is uncolonized at the start of the game;
+
+POP changes:
+- rebalanced POPs in the Carribean region and FRCA due to historical reasons (added afro-latino and native american pops);
+
+Setup decision changes:
+- fixed "RUS_setup_1836" - added +20 literacy to russian rich strata, +10 to middle;
+
+Decision and event changes:
+- rewrote a chain of decisions (FlavourMod_SPA) - totally rebalanced decisions for Carlist Spain, Iberia and Portugal for colonial reconquista;
+- totally rebalanced a decision and an event chain for France in the Rhine Crisis allowing to rampage through Belgium and The Netherlands and establish a frontier France had after the war of the 1st coalition (it's a costly option though and you're about to face 3+ GP at once);
+- fixed an event chain (BoerWar) - Now Natalia is released as a vassal properly;
+- fixed decisions and events for Canada annexing Hudson Company, if player plays as Hudson Company;
+- fixed an event id 6022 (SAF - #Zoutpansberg Setup) - removed additional 30% literacy coz boer's starting literacy is already 25%;
+- fixed an event id 44334 (BritishDominions - #SAF asks for independence) - now it doesn't fire, if owner has boer as primary culture;
+- fixed an event id 12120 (WorkPlaceEvents - #Blood & Iron Mine) - MTTH reduced, now also works for provinces with coal, sulphur and precious metal;
+- fixed an event id 36709 (BELFlavor - #The Treaty of London) - Luxembourg is released as a part of Prussian sphere due to its membership in German Confederation;
+- fixed an event id 900007 (ItaloTurkishWar - #Declaration of war) - Now there is no extra 13bb for Italy for missing cb;
+- fixed an event id 99700 (FlavourMod_SouthAmerica - #The Treaty of Managua) - Mosquito recieves an event informing about change of overlord, if a player plays as Mosquito;
+- fixed an event id 97090 (ARGFlavor - #The Argentina-Chile Border Treaty) - vassals of Spain can also split Patagonia;
+- fixed an event id 97085 (ARGFlavor - #Conquest of the Desert) - Argentine occupy Patagonia even if it is a vassal of Spain (VLP tag include);
+- fixed an event id 97080 (CHLhist - #Occupation of Araucania) - Chile occupy Patagonia even if it is a vassal of Spain (CGC tag include);
+- fixed an event id 700002 (PRGhist - #Carlos Lopez coup) - Paraguay recieves control and core over province id 2420 - Iguatemi (it's uncolonized from the start of the game);
+- fixed an event id 36965 (ENGFlavor - #The Lagos Slave Trade) - doesn't fire if a global flag "colonial_railroading_disabled" is active;
+- fixed an event id 97512 (CrimeanWar - #The Treaty of Paris (Russian Version)) - Caucasian Namestnik recieves a core on province id 1103, Russia doesnot recieve cores;
+- fixed an event id 32513 (Caucasian War - #The Caucasian War) - Caucasian Namestnik recieves a core on province id 1096 - Batum, Russia doesnot recieve cores;
+- fixed an event id 325105 (Caucasian War - #Second Circassian War) -  Russia doesnot recieve cores (it will if it wins a second Caucasian war when Shamil will be captured);
+- fixed an event id 325107 (Caucasian War - #Imam Shamil captured) - Russia recieves cores on all circassian, chechen and dagestani cores;
+- fixed an event id 99832 (FlavourMod_Great Eastern Crisis Event - #Dismantle the Ottoman Empire) - Russia recieves a core on province id 1096 - Batum;
+- fixed a decision (USCA - occupy_mosquito) - it doesn't available, if a player plays as Mosquito;
+- fixed a decision (RUS - establish_caucasus_viceroyalty) - syntaxis has been improved;
+- added an event id 777777773 (setup_jackslater_fix - #Uprising in Panama) - Panamian revolt during the Colombian civil war; 
+- added an event id 777777774 (setup_jackslater_fix - #USA response) - Intervention in Panama from USA;
+- added an event id 777777775 (setup_jackslater_fix - #Gold found in Amapa) - precious_metal becomes trade good in Amapa province;
+- added an event id 777777776 (setup_jackslater_fix - #Geneva Arbitration) - a return Amapa province to Brazil from France;
+- added an event id 7777777710 (setup_jackslater_fix - #The end of slavery in British Honduras) - the end of slavery in British Honduras;
+- added a decision (jackslater setup and fixes - make_british_honduras_a_crown_colony) - for United Kingdom to annex Belize;
+- added a decision (jackslater setup and fixes - curacao_integration) - for The Netherlands to core the Netherland Antilles (Curacao and Aruba);
+- added a decision (jackslater setup and fixes - organize_antillean_confederation) - for latin american cultures to organize Antillean Confederation;
+- added a decision (jackslater setup and fixes - annex_antillean_confederation) - for latin american cultures to annex Antillean Confederation;
+- added a decision (jackslater setup and fixes - annex_the_USCA) - for latin american cultures to annex reformed FRCA;
+- added a decision (jackslater setup and fixes - unite_the_andes_people) - for Gran Colombia and Andine Confederation to unify North and South Andean people;
+- added a decision (jackslater setup and fixes - claim_brazil_iguatemi) - add core to Brazil on a province id 2420 - Iguatemi;
+- fixed an event id 13357 (CivilizationAndGunBoats - #Doctrine of Lapse) - MTTH reduced;
+- fixed an event id 99999 (FlavourMod_GER - #Ems Dispatch - South German States Respond) - south german states being sphered by France don't accept an alliance with NGF;
+- fixed an event id 44840 (MEXFlavor - #Santa Anna Captured!) - it doesn't fire if player plays as Mexico;
+- fixed a decision (RUS - "russify_baltic_states") - now it gives RUS cores on it;
+- fixed a decision (RUS - "peking_convention_TPG") - fixed an error, Russia now claimes provinces id 1081, 2697 as it did in treaty with Qing;
+- fixed a decision (SAF - "form_south_africa_diplomatically") - added tag ZOU in potential;
+- fixed a decision (SAF - "unite_with_transvaal") - fixed syntaxis;
+- fixed decisions (BoerWar - "appeal_to_the_british" and "boer_republic") - added tag ZOU in potential;
+- fixed decisions (BoerWar - "claim_transvaal", "claim_oranje" and "claim_natalia") - fixed syntaxis;
+- fixed decisions (Italy - "cavours_diplomacy" and "claim_savoy") - now France also gets core on Monaco if Sardinia owns it (it means microstates are disabled);
+- deleted a decision (FlavourMod_KUK - leipzig_congress) - too powerfull and ahistorical, as Habsburgs couldn't simply unify with Prussia;

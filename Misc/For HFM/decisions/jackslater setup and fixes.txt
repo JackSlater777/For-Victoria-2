@@ -1,0 +1,944 @@
+political_decisions = {
+	make_british_honduras_a_crown_colony = {
+		picture = spain_reconquest
+		potential = {
+			#tag = ENG
+			BLZ = { exists = yes ai = yes }
+			is_greater_power = yes	
+			BLZ = { vassal_of = THIS }			
+			NOT = { has_global_flag = annex_belize }
+		}
+
+		allow = {
+			nationalism_n_imperialism = 1
+			is_sphere_leader_of = BLZ
+			war = no
+		}
+
+		effect = {
+			set_global_flag = annex_belize
+			prestige = 5
+			random_country = {
+				limit = {
+					tag = BLZ
+					ai = yes
+				}
+				#civilized = no
+				remove_accepted_culture = british
+				#government = democracy
+				annex_to = THIS
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+#	create_mosquito_vassal = {
+#		picture = "moskito_coast_reserve"
+#		potential = {
+#			has_global_flag = treaty_of_managua_success
+#			NOT = { has_country_flag = create_mosquito_vassal }	
+#			OR = { 
+#				AND = {
+#					owns = 2197
+#					is_vassal = no
+#					war = no
+#				}
+#				2197 = {
+#					owner = {
+#						in_sphere = THIS
+#						vassal_of = THIS
+#						war = no
+#					}
+#				}
+#			}
+#			exists = MSK
+#			MSK = { is_vassal = no }
+#		}
+#		
+#		allow = {
+#			war = no
+#		}
+#		
+#		effect = {
+#			create_vassal = MSK
+#			2200 = { add_core = NIC }
+#			set_country_flag = create_mosquito_vassal
+#		}
+#		ai_will_do = { factor = 1 }
+#	}
+
+	curacao_integration = {
+		picture = map_caribbean
+		potential = {
+			primary_culture = dutch
+			slavery = no_slavery
+			#HAI = { all_core = { owned_by = THIS } }
+			owns = 2234
+			owns = 2235
+			NOT = { has_country_flag = integrated_curacao }
+		}
+		allow = {
+			biologism = 1
+			NOT = { average_militancy = 3 }
+			2234 = { is_colonial = no }
+			2235 = { is_colonial = no }
+		}
+		effect = {
+			any_pop = {
+				limit = { culture = afro_caribbean }
+				consciousness = -4
+				militancy = -4
+			}
+			2234 = {
+				add_province_modifier = {
+					name = core_integration
+					duration = -1
+				}
+			}
+			2235 = {
+				add_province_modifier = {
+					name = core_integration
+					duration = -1
+				}
+			}
+			add_accepted_culture = afro_caribbean
+			THIS = { set_country_flag = integrated_curacao }
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	organize_antillean_confederation = {
+		picture = form_antillean_confederation
+		potential = {
+			OR = {
+				primary_culture = mexican
+				primary_culture = central_american
+				#primary_culture = caribeno
+				primary_culture = north_andean
+				primary_culture = south_andean
+				primary_culture = platinean
+			}
+			is_greater_power = yes
+			NOT = { exists = ATC }
+			NOT = { has_country_flag = organized_antillean_confederation }
+			NOT = { has_country_flag = integrated_antillean_confederation }
+		}
+		
+		allow = {
+			war = no
+			government = democracy
+			nationalism_n_imperialism = 1
+			biologism = 1
+			#CUB = {
+			#	OR = {
+			#		in_sphere = THIS
+			#		all_core = { owned_by = THIS }
+			#	}
+			#}
+			CUB = {
+				all_core = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+							war = no
+							OR = {
+								capital_scope = { continent = north_america }
+								capital_scope = { continent = south_america }
+							}
+						}
+					}
+				}
+			}
+			DOM = {
+				all_core = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+							war = no
+							OR = {
+								capital_scope = { continent = north_america }
+								capital_scope = { continent = south_america }
+							}
+						}
+					}
+				}
+			}
+			PRI = {
+				all_core = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+							war = no
+							OR = {
+								capital_scope = { continent = north_america }
+								capital_scope = { continent = south_america }
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		effect = {
+			set_country_flag = organized_antillean_confederation
+			prestige = 10
+			PRI = { all_core = { add_core = ATC } }
+			CUB = { all_core = { add_core = ATC } }
+			DOM = { all_core = { add_core = ATC } }
+			any_country = {
+				limit = {
+					primary_culture = caribeno
+					NOT = { tag = THIS }
+					in_sphere = THIS
+				}
+				annex_to = THIS
+			}
+			any_country = {
+				limit = {
+					ai = yes
+					OR = {
+						in_sphere = THIS
+						vassal_of = THIS
+					}
+				}
+				any_owned = {
+					limit = { is_core = ATC }
+					secede_province = THIS
+				}
+			}
+			any_owned = {
+				limit = {
+					is_core = ATC
+					is_core = THIS
+				}
+				remove_core = ATC
+			}
+			release_vassal = ATC
+			ATC = { political_reform = federalism }
+			relation = { who = ATC value = 100 }
+			diplomatic_influence = { who = ATC value = 200 }
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	annex_antillean_confederation = {
+		picture = form_antillean_confederation
+		potential = {
+			OR = {
+				primary_culture = mexican
+				primary_culture = central_american
+				#primary_culture = caribeno
+				primary_culture = north_andean
+				primary_culture = south_andean
+				primary_culture = platinean
+			}
+			is_greater_power = yes
+                        exists = ATC
+			NOT = { has_country_flag = integrated_antillean_confederation }
+		}
+		allow = {
+			war = no
+			government = democracy
+			nationalism_n_imperialism = 1
+			biologism = 1
+			ATC = { 
+				war = no
+				vassal_of = THIS
+				in_sphere = THIS
+			}
+		}
+		
+		effect = {
+			set_country_flag = integrated_antillean_confederation
+			prestige = 20
+                        badboy = 10
+			ATC = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			ATC = { annex_to = THIS }
+			any_country = {
+				limit = {
+					ai = yes
+					OR = {
+						in_sphere = THIS
+						vassal_of = THIS
+					}
+				}
+				any_owned = {
+					limit = { is_core = ATC }
+					secede_province = THIS
+				}
+			}
+			add_accepted_culture = caribeno
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.5
+			}
+		}
+	}
+
+	annex_the_USCA = {
+		picture = form_USCA
+		potential = {
+			OR = {
+				primary_culture = mexican
+				#primary_culture = central_american
+				primary_culture = caribeno
+				primary_culture = north_andean
+				primary_culture = south_andean
+				primary_culture = platinean
+			}
+			is_greater_power = yes
+			has_global_flag = the_usca_has_failed
+                        exists = UCA
+			NOT = { has_country_flag = integrated_usca }
+		}
+		allow = {
+			war = no
+			government = democracy
+			nationalism_n_imperialism = 1
+			biologism = 1
+			UCA = { 
+				war = no
+				vassal_of = THIS
+				in_sphere = THIS
+			}
+		}
+		
+		effect = {
+			set_country_flag = integrated_usca
+			prestige = 20
+                        badboy = 10
+			UCA = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			UCA = { annex_to = THIS }
+			any_country = {
+				limit = {
+					ai = yes
+					OR = {
+						in_sphere = THIS
+						vassal_of = THIS
+					}
+				}
+				any_owned = {
+					limit = { is_core = UCA }
+					secede_province = THIS
+				}
+			}
+			add_accepted_culture = central_american
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.5
+			}
+		}
+	}
+
+	unite_the_andes_people = {
+		picture = peru_bolivia
+		potential = {
+			OR = {
+				tag = GCO
+				AND = {
+					tag = PBC
+					has_country_flag = pbc_united
+				}
+			}
+			is_greater_power = yes
+			NOT = { has_country_flag = andes_are_united }
+		}
+		allow = {
+			war = no
+			government = democracy
+			nationalism_n_imperialism = 1
+			biologism = 1
+		}
+		
+		effect = {
+			set_country_flag = andes_are_united
+			prestige = 20
+                        badboy = 10
+			CLM = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			VNZ = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			ECU = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			PEU = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			SPU = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			BOL = {
+				all_core = {
+					limit = {
+						NOT = { is_core = THIS }
+					}
+					add_core = THIS
+				}
+			}
+			any_country = {
+				limit = {
+					ai = yes
+					OR = {
+						in_sphere = THIS
+						vassal_of = THIS
+					}
+				}
+				any_owned = {
+					limit = { is_core = THIS }
+					secede_province = THIS
+				}
+			}
+			any_country = {
+				limit = {
+					tag = THIS
+					primary_culture = north_andean
+				}
+				add_accepted_culture = south_andean
+			}
+			any_country = {
+				limit = {
+					tag = THIS
+					primary_culture = south_andean
+				}
+				add_accepted_culture = north_andean
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.5
+			}
+		}
+	}
+
+	claim_brazil_iguatemi = {
+		picture = conquest_of_the_chaco
+		potential = {
+			tag = BRZ
+			NOT = { has_country_flag = claimed_brazil_iguatemi }
+			2420 = { empty = no }
+		}
+		
+		allow = {
+			war = no
+			OR = {
+				is_greater_power = yes
+				nationalism_n_imperialism = 1
+				year = 1865
+			}
+		}
+
+		effect = {
+			set_country_flag = claimed_brazil_iguatemi
+			2420 = { add_core = THIS }
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	establish_pannetherlandism = {
+	picture = establish_panfrenchism
+		potential = {
+			tag = NET
+			is_greater_power = yes
+			NOT = { has_global_flag = pan_netherlandism }
+		}
+		
+		allow = {
+			war_policy = jingoism
+			state_n_government = 1
+		}
+		
+		effect = {
+			set_global_flag = pan_netherlandism
+			prestige = 20
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	claim_flanders = {
+	picture = become_wallonia
+		potential = {
+			tag = NET
+			is_greater_power = yes
+			has_global_flag = pan_netherlandism
+			NOT = { has_country_flag = claim_flanders }
+			FLA = { all_core = { NOT = { owned_by = THIS } } }
+		}
+		
+		allow = {
+			war = no
+			war_policy = jingoism
+			OR = {
+				AND = {
+					NOT = { relation = { who = BEL value = 100 } }
+					BEL = { exists = yes }
+				}
+				AND = {
+					NOT = { relation = { who = FLA value = 100 } }
+					FLA = { exists = yes }
+				}
+			}
+		}
+		
+		effect = {
+			set_country_flag = claim_flanders
+			badboy = 6
+			FLA = { all_core = { add_core = THIS } }
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.7
+			}
+		}
+	}
+
+	establish_greater_netherlands = {
+	picture = become_wallonia
+		potential = {
+			tag = NET
+			is_greater_power = yes
+			has_global_flag = pan_netherlandism
+			NOT = { has_country_flag = greater_netherlands }
+			exists = BEL
+		}
+		
+		allow = {
+			war = no
+			war_policy = jingoism
+			nationalism_n_imperialism = 1
+			BEL = { in_sphere = THIS }
+		}
+		
+		effect = {
+			set_country_flag = greater_netherlands
+			badboy = 15
+			BEL = { all_core = { add_core = THIS } }
+			inherit = BEL
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				badboy = 0.4
+			}
+		}
+	}
+
+	the_boer_question = {
+		picture = embrace_the_boer
+		potential = {
+			tag = NET
+			is_greater_power = yes
+			NOT = { 
+				exists = SAF
+				exists = VLK
+				SAF = { any_core = { controlled_by = THIS } }
+			}
+			has_country_flag = dutch_africa
+			NOT = { has_country_flag = demanded_saf }
+		}
+		
+		allow = {
+			war = no
+			NOT = { truce_with = ENG }
+			money = 200000
+		}
+		
+		effect = {
+			set_country_flag = demanded_saf
+			ENG = { country_event = 777777777 }
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	treaty_of_amsterdam_net = { #Treaty of Amsterdam - Gets Dutch SAF
+		picture = treaty_signing
+		potential = {
+			tag = NET
+			is_greater_power = yes
+			has_country_flag = dutch_africa
+			has_country_flag = war_for_saf
+			NOT = { has_country_flag = saf_regained }
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					SAF = { any_core = { OR = { controlled_by = REB controlled_by = THIS } } }
+					ENG = { war_exhaustion = 10 }
+					NOT = { national_provinces_occupied = 0.05 }
+					NOT = { war_exhaustion = 35 }
+				}	
+				AND = { 
+					truce_with = ENG
+					is_greater_power = yes
+					ENG = {
+						NOT = { war_with = THIS }
+						is_disarmed = yes
+					}
+				}
+			}
+		}
+		
+		effect = {
+			set_country_flag = saf_regained
+			prestige = 10
+			badboy = 5
+			random_owned = { 
+				limit = { owner = { war_with = ENG } }
+				owner = { end_war = ENG }
+				any_country = { limit = { war_with = THIS alliance_with = ENG } end_war = THIS }
+			}
+			#SAF = { all_core = { add_core = VLK remove_core = SAF } }
+			#NAL = { all_core = { add_core = VLK } }
+			#TRN = { all_core = { add_core = VLK } }
+			#ORA = { all_core = { add_core = VLK } }
+			#ZOU = { all_core = { add_core = VLK } }
+			ENG = {
+				badboy = -5
+				any_owned = {
+					limit = {
+						OR = {
+							is_core = SAF
+							#Namaqualand
+							province_id = 2083
+							province_id = 2084
+							province_id = 2085
+							province_id = 2086
+							#Northern Cape
+							province_id = 2558
+							province_id = 2093
+							province_id = 2088
+							province_id = 2094
+							province_id = 2095
+						}
+					}
+					secede_province = THIS
+				}
+			}
+			any_owned = {
+				limit = {
+					OR = {
+						#Namaqualand
+						province_id = 2083
+						province_id = 2084
+						province_id = 2085
+						province_id = 2086
+						#Northern Cape
+						province_id = 2558
+						province_id = 2093
+						province_id = 2088
+						province_id = 2094
+						province_id = 2095
+					}
+				}
+				secede_province = UTI
+			}
+			release = SAF
+			UTI = { inherit = SAF }
+			THIS = { inherit = UTI }
+			SAF = { all_core = { remove_core = ENG } }
+			any_country = {
+				limit = {
+					OR = {
+						tag = NAL
+						tag = TRN
+						tag = ORA
+						tag = ZOU
+					}
+					ai = yes
+					exists = yes
+				}
+				country_event = 77777771
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1 
+			modifier = { factor = 0 badboy = 0.7 }
+		}
+	}
+
+	treaty_of_amsterdam_net2 = { #Treaty of Amsterdam - Gets Dutch SAF, Ceylon, Malacca, Mauritius
+		picture = treaty_signing
+		potential = {
+			tag = NET
+			is_greater_power = yes
+			has_country_flag = dutch_africa
+			has_country_flag = war_for_saf
+			NOT = { has_country_flag = saf_regained }
+		}
+		
+		allow = {	
+			truce_with = ENG
+			is_greater_power = yes
+			ENG = {
+				NOT = { war_with = THIS }
+				is_disarmed = yes
+			}
+		}
+		
+		effect = {
+			set_country_flag = saf_regained
+			prestige = 20
+			badboy = 10
+			random_owned = { 
+				limit = { owner = { war_with = ENG } }
+				owner = { end_war = ENG }
+				any_country = { limit = { war_with = THIS alliance_with = ENG } end_war = THIS }
+			}
+			#SAF = { all_core = { add_core = VLK remove_core = SAF } }
+			#NAL = { all_core = { add_core = VLK } }
+			#TRN = { all_core = { add_core = VLK } }
+			#ORA = { all_core = { add_core = VLK } }
+			#ZOU = { all_core = { add_core = VLK } }
+			ENG = {
+				badboy = -5
+				any_owned = {
+					limit = {
+						OR = {
+							is_core = SAF
+							#Namaqualand
+							province_id = 2083
+							province_id = 2084
+							province_id = 2085
+							province_id = 2086
+							#Northern Cape
+							province_id = 2558
+							province_id = 2093
+							province_id = 2088
+							province_id = 2094
+							province_id = 2095
+							#Ceylon
+							is_core = SRI
+							#Mauritius
+							province_id = 2125
+							#Malacca Strait
+							is_core = JOH
+						}
+					}
+					secede_province = THIS
+				}
+
+			}
+			EIC = {
+				any_owned = {
+					limit = {
+						OR = {
+							#Ceylon
+							is_core = SRI
+							#Mauritius
+							province_id = 2125
+							#Malacca Strait
+							is_core = JOH
+						}
+					}
+					secede_province = THIS
+				}
+
+			}
+			any_owned = {
+				limit = {
+					OR = {
+						#Namaqualand
+						province_id = 2083
+						province_id = 2084
+						province_id = 2085
+						province_id = 2086
+						#Northern Cape
+						province_id = 2558
+						province_id = 2093
+						province_id = 2088
+						province_id = 2094
+						province_id = 2095
+						#Ceylon
+						is_core = SRI
+						#Mauritius
+						province_id = 2125
+						#Malacca Strait
+						is_core = JOH
+					}
+				}
+				secede_province = UTI
+			}
+			release = SAF
+			UTI = { inherit = SAF }
+			THIS = { inherit = UTI }
+			SAF = { all_core = { remove_core = ENG } }
+			any_country = {
+				limit = {
+					OR = {
+						tag = NAL
+						tag = TRN
+						tag = ORA
+						tag = ZOU
+					}
+					ai = yes
+					exists = yes
+				}
+				country_event = 77777771
+			}
+			random_country = {
+				limit = {
+					tag = JOH
+					exists = yes
+				}
+				ENG = { diplomatic_influence = { who = JOH value = -200 } }
+				THIS = { diplomatic_influence = { who = JOH value = 300 } }
+			}
+			random_country = {
+				limit = {
+					tag = SLG
+					exists = yes
+				}
+				ENG = { diplomatic_influence = { who = SLG value = -200 } }
+				THIS = { diplomatic_influence = { who = SLG value = 300 } }
+			}
+			random_country = {
+				limit = {
+					tag = PHG
+					exists = yes
+				}
+				ENG = { diplomatic_influence = { who = PHG value = -200 } }
+				THIS = { diplomatic_influence = { who = PHG value = 300 } }
+			}
+			random_country = {
+				limit = {
+					tag = PRK
+					exists = yes
+				}
+				ENG = { diplomatic_influence = { who = PRK value = -200 } }
+				THIS = { diplomatic_influence = { who = PRK value = 300 } }
+			}
+			random_country = {
+				limit = {
+					tag = SWK
+					exists = yes
+				}
+				ENG = { diplomatic_influence = { who = SWK value = -200 } }
+				THIS = { diplomatic_influence = { who = SWK value = 300 } }
+			}
+			random_country = {
+				limit = {
+					tag = BRU
+					exists = yes
+				}
+				ENG = { diplomatic_influence = { who = BRU value = -200 } }
+				THIS = { diplomatic_influence = { who = BRU value = 300 } }
+			}
+		}
+
+		ai_will_do = { factor = 0 }
+	}
+
+	organize_vlk_net = {
+		picture = embrace_the_boer
+		potential = {
+			tag = NET
+			is_greater_power = yes
+			NOT = {
+				exists = SAF
+				exists = VLK
+			}
+			has_country_flag = saf_regained
+			NOT = { has_country_flag = vlk_organized }
+		}
+		
+		allow = {
+			money = 100001
+			war = no
+			owns = 2087 #Cape Town
+			owns = 2111 #Durban
+			owns = 2101 #Bloemfontein
+			owns = 2105 #Pretoria
+			owns = 2110 #Zoutpansberg
+		}
+		
+		effect = {
+			treasury = -100000
+			any_pop = {
+				limit = { culture = british }
+				consciousness = 5
+				militancy = 5
+			}
+			#SAF = { all_core = { add_core = VLK remove_core = SAF } }
+			#NAL = { all_core = { remove_core = NAL } }
+			#TRN = { all_core = { remove_core = TRN } }
+			#ORA = { all_core = { remove_core = ORA } }
+			ZOU = { all_core = { remove_core = ZOU } }
+			#ENG_2083 = { add_core = SAF }
+			#ENG_2092 = { add_core = SAF }
+			any_owned = {
+				limit = { is_core = SAF }
+				add_province_modifier = {
+					name = french_colonial_integration
+					duration = 3650
+				}
+			}			
+			random_owned = { limit = { owner = { tag = NET OR = { government = hms_government government = absolute_monarchy government = prussian_constitutionalism } } SAF = { government = hms_government } } }
+			random_owned = { limit = { owner = { tag = NET government = democracy } SAF = { government = democracy } } }
+			random_owned = { limit = { owner = { NOT = { colonial_policy = settlement } } } owner = { political_reform = settlement } }
+			set_country_flag = vlk_organized
+		}
+		ai_will_do = { factor = 1 }
+	}
+}

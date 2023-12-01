@@ -1,0 +1,1227 @@
+#To boer republics - NET reclaimed South Africa
+country_event = {
+	id = 77777771
+	title = "EVTNAME77777771"
+	desc = "EVTDESC77777771"
+	picture = "dominican_revolution"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "We welcome their return!"
+		#THIS = { annex_to = FROM }
+		UTI = { inherit = THIS }
+		FROM = { inherit = UTI }
+		ai_chance = {
+			factor = 95
+		}
+	}
+
+	option = {
+		name = "We do not care."
+		prestige = 5
+		relation = { who = FROM value = -200 }
+		FROM = {
+			casus_belli = {
+				target = THIS
+				type = conquest
+				months = 120
+			}
+			war = {
+				target = THIS
+				attacker_goal = { casus_belli = conquest }
+				defender_goal = { casus_belli = status_quo }
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+#ENG incorporating land to RPL with RPL cores
+country_event = {
+	id = 77777772
+	title = "EVTNAME77777772"
+	desc = "EVTDESC77777772"
+	picture = "dominican_revolution"
+	
+	trigger = {
+                tag = ENG
+                any_owned_province = { is_core = RPL }
+                RPL = {
+                        exists = yes
+                        vassal_of = THIS
+                }
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+
+	option = {
+		name = "Give this land to them."
+		any_owned = {
+			limit = { is_core = RPL }
+			secede_province = RPL
+			remove_core = THIS
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#The Thousand Days War
+country_event = {
+	id = 77777770
+	title = "EVTNAME77777774"
+	desc = "EVTDESC77777774"
+	picture = "dominican_revolution"
+
+	trigger = {
+		tag = CLM
+                year = 1899
+		owns = 2204
+		NOT = { exists = PNM }
+	}
+
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		months = 3
+	}				
+			
+	option = {
+		name = "Bad!"
+		any_pop = {
+			limit = {
+				location = { is_core = PNM }
+				has_pop_culture = central_american
+			}
+			militancy = 5
+			consciousness = 5
+		}
+		any_owned = {
+			limit = { is_core = PNM }
+			add_province_modifier = {
+				name = nationalist_agitation
+				#duration = 2190
+				duration = 3650
+			}
+		}
+	}
+}
+
+#Uprising in Panama
+country_event = {
+	id = 77777773
+	title = "EVTNAME77777773"
+	desc = "EVTDESC77777773"
+	picture = "dominican_revolution"
+	
+	trigger = {
+                tag = CLM
+                year = 1903
+		owns = 2204
+		any_owned_province = { is_core = PNM average_militancy = 6 }
+		NOT = { exists = PNM }
+		NOT = { year = 1915 }
+	}
+
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		months = 6
+	}
+	
+
+	option = {
+		name = "Take them down."
+		any_owned = {
+			limit = { is_core = PNM }
+			remove_core = CLM
+			any_pop = { militancy = -9 consciousness = -9 }
+			remove_province_modifier = nationalist_agitation
+			secede_province = PNM
+		}
+		PNM = {
+			define_general = {
+				name = "Victoriano Lorenzo"
+				personality = unit_personality
+				background = implacablexnationalist
+			}
+		}
+		relation = { who = PNM value = -400 }
+		casus_belli = {
+			target = PNM
+			type = conquest
+			months = 60
+		}
+		war = {
+			target = PNM
+			attacker_goal = { casus_belli = conquest }
+		}
+		USA = { country_event = 77777774 }
+		ai_chance = {
+			factor = 90
+		}
+	}
+
+	option = {
+		name = "They deserved freedom."
+		badboy = -5
+		any_owned = {
+			limit = { is_core = PNM }
+			remove_core = CLM
+			any_pop = { militancy = -9 consciousness = -9 }
+			remove_province_modifier = nationalist_agitation
+			secede_province = PNM
+		}
+		PNM = {
+			define_general = {
+				name = "Victoriano Lorenzo"
+				personality = unit_personality
+				background = implacablexnationalist
+			}
+		}
+		relation = { who = PNM value = 100 }
+		ai_chance = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = "For the freedom of Panama!"
+		any_owned = {
+			limit = { is_core = PNM }
+			remove_core = CLM
+			any_pop = { militancy = -9 consciousness = -9 }
+			remove_province_modifier = nationalist_agitation
+			secede_province = PNM
+		}
+		PNM = {
+			define_general = {
+				name = "Victoriano Lorenzo"
+				personality = unit_personality
+				background = implacablexnationalist
+			}
+		}
+		relation = { who = PNM value = -400 }
+		casus_belli = {
+			target = PNM
+			type = conquest
+			months = 60
+		}
+		war = {
+			target = PNM
+			attacker_goal = { casus_belli = conquest }
+		}
+		USA = { country_event = 77777774 }
+		change_tag_no_core_switch = PNM
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#USA response
+country_event = {
+	id = 77777774
+	title = "EVTNAME77777773"
+	desc = "EVTDESC77777773"
+	picture = "dominican_revolution"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "Support Panamians."
+		badboy = 2
+		relation = { who = PNM value = 400 }
+		diplomatic_influence = { who = PNM value = 300 }
+		create_alliance = PNM
+		relation = { who = FROM value = -300 }
+		diplomatic_influence = { who = FROM value = -200 }
+		leave_alliance = FROM
+		ai_chance = {
+			factor = 90
+		}
+	}
+
+	option = {
+		name = "We do not care."
+		prestige = -5
+		relation = { who = FROM value = 50 }
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Gold found in Amapa
+province_event = {
+	id = 777777775
+	title = "EVTNAME1100"
+	desc = "EVTDESC1100"
+
+	trigger = {
+		year = 1890
+		NOT = { year = 1930 }
+		province_id = 2415	#Amapa
+		not = { trade_goods = precious_metal }
+	}
+
+	fire_only_once = yes
+
+	mean_time_to_happen =  {
+		months = 6
+	}
+
+	option = {
+		name = "EVTOPTA1100"
+		trade_goods = precious_metal
+		add_province_modifier = {
+			name = gold_rush
+			duration = 730
+		}
+	}
+}
+
+#Colonial Reconquest
+country_event = {
+	id = 777777776
+	title = "EVTNAME777777776" # Dutch Colonies
+	desc = "EVTDESC777777776"
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = NET
+		is_greater_power = yes
+		war = no
+		has_global_flag = pan_netherlandism
+		year = 1855
+		NOT = { 
+			has_country_flag = dutch_africa
+			has_country_flag = no_dutch_africa
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 1
+		modifier = {
+			factor = 0.01
+			year = 1860
+		}
+	}
+	
+	option = {
+		name = "Boers suffer! We should help them."
+		set_country_flag = dutch_africa
+		badboy = 8
+		prestige = 15
+		add_accepted_culture = boer
+		any_greater_power = {
+			limit = {
+				NOT = { alliance_with = THIS }
+			}
+			relation = {
+				who = THIS
+				value = -50
+			}
+		}
+		any_pop = {
+			dominant_issue = {
+				factor = 0.10
+				value = jingoism
+			}
+		}
+		any_pop = {
+			limit = {
+				is_primary_culture = yes
+				is_accepted_culture = yes
+			}
+			consciousness = -3
+			militancy = -3
+		}
+		ai_chance = { factor = 0 }
+	}
+	
+	option = {
+		name = "They are not worth our struggle."
+		set_country_flag = no_dutch_africa
+		remove_accepted_culture = boer
+		badboy = -2
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = {
+	id = 777777777 #Demand SAF - Main Event
+	title = "EVTNAME777777777"
+	desc = "EVTDESC777777777"
+	picture = "Administration"
+
+	is_triggered_only = yes
+
+	option = {
+		name = "We will not bow to Dutch Demands!" 
+		FROM = { country_event = 777777778 }
+		prestige = 5
+		any_pop = {
+			limit = {
+				is_primary_culture = yes
+				is_accepted_culture = yes
+			}
+			consciousness = -1
+			militancy = -1
+		}
+		any_pop = {
+			limit = { culture = boer }
+			consciousness = 5
+			militancy = 5
+		}
+		ai_chance = { factor = 85 }
+	}
+	
+	option = {
+		name = "The Boers are more trouble than they're worth" 
+		badboy = -2
+		prestige = -15
+		any_pop = {
+			limit = {
+				OR = {
+					type = aristocrats
+					type = officers
+					type = soldiers
+				}
+			}
+			consciousness = 5
+			militancy = 5
+		}
+		any_pop = {
+			limit = {
+				is_primary_culture = yes
+				is_accepted_culture = yes
+			}
+			consciousness = 1
+			militancy = 1
+		}
+		FROM = { country_event = 777777779 }
+		
+		ai_chance = { factor = 15 }
+	}
+}
+
+country_event = {
+	id = 777777778 #Demand SAF - UK says no
+	title = "EVTNAME777777778"
+	desc = "EVTDESC777777778"
+	picture = "Administration"
+
+	is_triggered_only = yes
+
+	option = {
+		name = "War is our only option for reclaiming Cape Colony!"
+		set_country_flag = war_for_saf
+		relation = { who = ENG value = -400 }
+		#SAF = { all_core = { add_core = VLK } }
+		badboy = 5
+		casus_belli = {
+			target = ENG
+			type = cut_down_to_size
+			months = 12
+		}
+		war = {
+			target = ENG
+			attacker_goal = { casus_belli = cut_down_to_size }
+			defender_goal = { casus_belli = cut_down_to_size }
+			call_ally = yes
+		}
+	}
+	
+	option = {
+		name = "Reuniting the Boers was a noble dream, but it isn't worth it."
+		prestige = -25
+		badboy = -5
+		set_country_flag = no_dutch_africa
+		remove_accepted_culture = boer
+	}
+}
+
+country_event = {
+	id = 777777779 #Demand SAF - UK says yes
+	title = "EVTNAME777777779"
+	desc = "EVTDESC777777779"
+	picture = "election_polls"
+
+	is_triggered_only = yes
+
+	option = {
+		name = "We are united once more."
+		badboy = 5
+		#SAF = { all_core = { add_core = VLK remove_core = SAF } }
+		#NAL = { all_core = { add_core = VLK } }
+		#TRN = { all_core = { add_core = VLK } }
+		#ORA = { all_core = { add_core = VLK } }
+		#ZOU = { all_core = { add_core = VLK } }
+		ENG = {
+			badboy = -8
+			any_owned = {
+				limit = { is_core = SAF }
+				secede_province = THIS
+			}
+		}
+		release = SAF
+		UTI = { inherit = SAF }
+		THIS = { inherit = UTI }
+		relation = { who = FROM value = 200 }
+		treasury = -200000
+		FROM = { treasury = 200000 }
+		SAF = { all_core = { remove_core = ENG } }
+		any_country = {
+			limit = {
+				OR = {
+					tag = NAL
+					tag = TRN
+					tag = ORA
+					tag = ZOU
+				}
+				ai = yes
+				exists = yes
+			}
+			country_event = 77777771
+		}
+	}
+}
+
+#Notification for Mosquito player about changing of vassal owner
+country_event = {
+	id = 777777710
+	title = "EVTNAME777777710"
+	desc = "EVTDESC777777710"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "Okay."
+		treasury = 1000
+		any_owned = {
+			limit = { exists = UCA is_core = MSK }
+			MSK = { all_core = { add_core = UCA } }
+		}
+		any_owned = {
+			limit = { exists = NIC is_core = MSK }
+			MSK = { all_core = { add_core = NIC } }
+		}
+	}		
+}
+
+#Province modifiers for the world famous mines and pastures
+province_event = {
+	id = 777777711 #Malaysian rubber
+	title = "EVTNAME1107"
+	desc = "EVTDESC1107"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 1384
+			province_id = 1385
+			province_id = 1386
+		}
+		trade_goods = rubber
+		NOT = { has_province_modifier = world_famous_rubber_production }
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Excellent!"
+		add_province_modifier = { name = world_famous_rubber_production duration = -1 }
+	}
+}
+
+province_event = {
+	id = 777777712 #La Platan cattle pastures
+	title = "EVTNAME777777712"
+	desc = "EVTDESC777777712"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 2344
+			province_id = 2348
+			province_id = 2349
+			province_id = 2350
+			province_id = 2352
+			province_id = 2356
+			province_id = 2357
+			province_id = 2359
+			province_id = 2360
+		}
+		trade_goods = cattle
+		NOT = { has_province_modifier = world_famous_cattle_pasturelands }
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Excellent!"
+		add_province_modifier = { name = world_famous_cattle_pasturelands duration = -1 }
+	}
+}
+
+province_event = {
+	id = 777777713 #Patagonian wool boom
+	title = "EVTNAME777777713"
+	desc = "EVTDESC777777713"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 2334
+			province_id = 2392
+			province_id = 2394
+			province_id = 2396
+			province_id = 2397
+			province_id = 2398
+			province_id = 2399
+		}
+		trade_goods = wool
+		NOT = { has_province_modifier = world_famous_sheep_pasturelands }
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Excellent!"
+		add_province_modifier = { name = world_famous_sheep_pasturelands duration = -1 }
+	}
+}
+
+province_event = {
+	id = 777777714 #Nitrate deposites of Atacama
+	title = "EVTNAME777777714"
+	desc = "EVTDESC777777714"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 2304
+			province_id = 2305
+			province_id = 2307
+			province_id = 2308
+			province_id = 2309
+			province_id = 2578
+		}
+		trade_goods = sulphur
+		NOT = { has_province_modifier = world_famous_nitrate_deposits }
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Excellent!"
+		add_province_modifier = { name = world_famous_nitrate_deposits duration = -1 }
+	}
+}
+
+###Rhine Crisis
+country_event = {
+	id = 777777715
+	title = "The Rhine Crisis"
+	desc = "EVTDESC99925"
+	picture = "rhineland"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVT99925OPTA"
+		prestige = 10
+		end_military_access = FROM
+		leave_alliance = FROM
+		relation = { who = FROM value = -400 }
+		FROM = { diplomatic_influence = { who = THIS value = -400 } }
+		casus_belli = {
+			target = FROM
+			type = humiliate
+			months = 20
+		}
+		FROM = {
+			war = {
+				target = THIS
+				attacker_goal = {
+					casus_belli = conquest
+				}
+				call_ally = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = 777777716
+	title = "The Rhine Crisis"
+	desc = "EVTDESC99925"
+	picture = "rhineland"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVT99925OPTA"
+		prestige = 10
+		end_military_access = FROM
+		leave_alliance = FROM
+		relation = { who = FROM value = -400 }
+		FROM = { diplomatic_influence = { who = THIS value = -400 } }
+		casus_belli = {
+			target = FROM
+			type = humiliate
+			months = 20
+		}
+		FROM = {
+			war = {
+				target = THIS
+				attacker_goal = {
+					casus_belli = acquire_state
+					state_province_id = 381
+				}
+				call_ally = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = 777777717
+	title = "The Rhine Crisis"
+	desc = "EVTDESC99925"
+	picture = "rhineland"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVT99925OPTA"
+		prestige = 10
+		end_military_access = FROM
+		leave_alliance = FROM
+		relation = { who = FROM value = -400 }
+		FROM = { diplomatic_influence = { who = THIS value = -400 } }
+		casus_belli = {
+			target = FROM
+			type = humiliate
+			months = 20
+		}
+		FROM = {
+			war = {
+				target = THIS
+				attacker_goal = {
+					casus_belli = cut_down_to_size
+				}
+				call_ally = yes
+			}
+		}
+	}
+}
+
+#The Rhine Crisis - French victory against the Netherlands
+country_event = {
+	id = 777777718
+	title = "EVTNAME99994"
+	desc = "EVTDESC99994"
+	picture = "rhineland"
+
+	trigger = {
+		primary_culture = french
+		capital = 425
+		has_country_flag = french_claimed_the_natural_border
+		has_recently_lost_war = no
+                has_global_flag = left_bank_french_victory
+		NET = {
+			has_recently_lost_war = yes
+			truce_with = THIS
+		}
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+	option = {
+		name = "Victory!"
+		clr_country_flag = french_claimed_the_natural_border
+		any_owned = {
+ 			limit = {
+				is_core = NET
+                	}
+                	secede_province = NET
+		}
+		NET = {
+			any_owned = {
+ 				limit = {
+					is_core = BEL
+                		}
+                		secede_province = THIS
+			}
+			any_owned = {
+ 				limit = {
+					is_core = FLA
+                		}
+                		secede_province = THIS
+			}
+			any_owned = {
+ 				limit = {
+					is_core = WLL
+                		}
+                		secede_province = THIS
+			}
+			any_owned = {
+ 				limit = {
+					is_core = LUX
+                		}
+                		secede_province = THIS
+			}
+			any_owned = {
+ 				limit = {
+					OR = {
+						is_core = LBG
+						province_id = 381 #Limburg
+                			}
+                		}
+                		secede_province = THIS
+                                #381 = { remove_core = LBG }
+			}
+		}
+		random_country = {
+			limit = {
+				tag = LUX
+                		exists = yes
+                		vassal_of = NET
+                	}
+                	annex_to = THIS
+		}
+		random_country = {
+			limit = {
+				tag = LBG
+                		exists = yes
+                		vassal_of = NET
+                	}
+                	annex_to = THIS
+		}
+	}
+}
+
+#End of province modifiers for world famous mines and pastures
+province_event = {
+	id = 777777719 #Malaysian rubber
+	title = "EVTNAME1107"
+	desc = "EVTDESC1107"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 1384
+			province_id = 1385
+			province_id = 1386
+		}
+		NOT = { trade_goods = rubber }
+		has_province_modifier = world_famous_rubber_production
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Bad!"
+		remove_province_modifier = { name = world_famous_rubber_production }
+	}
+}
+
+province_event = {
+	id = 777777720 #La Platan cattle pastures
+	title = "EVTNAME777777712"
+	desc = "EVTNAME777777712"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 2344
+			province_id = 2348
+			province_id = 2349
+			province_id = 2350
+			province_id = 2352
+			province_id = 2356
+			province_id = 2357
+			province_id = 2359
+			province_id = 2360
+		}
+		NOT = { trade_goods = cattle }
+		has_province_modifier = world_famous_cattle_pasturelands
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Bad!"
+		remove_province_modifier = { name = world_famous_cattle_pasturelands }
+	}
+}
+
+province_event = {
+	id = 777777721 #Patagonian wool boom
+	title = "EVTNAME777777713"
+	desc = "EVTDESC777777713"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 2334
+			province_id = 2392
+			province_id = 2394
+			province_id = 2396
+			province_id = 2397
+			province_id = 2398
+			province_id = 2399
+		}
+		NOT = { trade_goods = wool }
+		has_province_modifier = world_famous_sheep_pasturelands
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Bad!"
+		remove_province_modifier = { name = world_famous_sheep_pasturelands }
+	}
+}
+
+province_event = {
+	id = 777777722 #Nitrate deposites of Atacama
+	title = "EVTNAME777777714"
+	desc = "EVTDESC777777714"
+	picture = ""
+
+	trigger = {
+		or = {
+			province_id = 2304
+			province_id = 2305
+			province_id = 2307
+			province_id = 2308
+			province_id = 2309
+			province_id = 2578
+		}
+		NOT = { trade_goods = sulphur }
+		has_province_modifier = world_famous_nitrate_deposits
+	}
+
+	mean_time_to_happen =  {
+		days = 1
+
+	}
+
+	option = {
+		name = "Excellent!"
+		remove_province_modifier = { name = world_famous_nitrate_deposits }
+	}
+}
+
+#Remove colombian cores from Panama being freed without event chain
+country_event = {
+	id = 777777723
+	title = "EVTNAME45103"
+	desc = "EVTDESC45103"
+	picture = "dominican_revolution"
+	
+	trigger = {
+                tag = PNM
+		owns = 2204
+		exists = yes
+		2204 = { is_core = CLM }
+		war = no
+		year = 1836
+	}
+
+	fire_only_once = yes
+
+	mean_time_to_happen = { days = 1 }
+	
+	option = {
+		name = "EVT45103OPTA"
+		prestige = 5
+		any_owned = {
+			limit = { is_core = PNM }
+			remove_core = CLM
+			any_pop = { militancy = -9 consciousness = -9 }
+			remove_province_modifier = nationalist_agitation
+		}
+		define_general = {
+			name = "Victoriano Lorenzo"
+			personality = unit_personality
+			background = implacablexnationalist
+		}
+		relation = { who = CLM value = -100 }
+	}
+}
+
+#The South African Dominion - VLK asks for independence from NET
+country_event = {
+	id = 777777723
+	title = "EVTNAME44334"
+	desc = "EVTDESC44334"
+	picture = "danishgovernment"
+
+	major = yes
+
+	trigger = {
+		NOT = { primary_culture = boer } #JackSlater fix
+		war = no
+		year = 1909
+		any_owned_province = { is_core = VLK }
+		NOT = { exists = VLK }
+		is_possible_vassal = VLK
+	}
+
+	mean_time_to_happen = {
+		months = 6
+		modifier = {
+			factor = 10
+			has_country_flag = VLK_independence_refused
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = VLK }
+				average_militancy = 3
+			}
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = VLK }
+				average_militancy = 4
+			}
+		}
+		modifier = {
+			factor = 0.5
+			year = 1920
+			NOT = { has_country_flag = VLK_independence_refused }
+		}
+	}
+
+	option = {
+		name = "EVT44330OPTA"
+		clr_country_flag = VLK_independence_refused
+		prestige = -20
+		badboy = -5
+		random_owned = { limit = { province_id = 2113 } change_province_name = "Richards Bay" add_core = VLK }
+		random_owned = { limit = { province_id = 2112 } change_province_name = "Ladysmith" add_core = VLK }
+		random_owned = { limit = { province_id = 2100 } change_province_name = "Port St. Johns" add_core = VLK }
+		random_owned = { limit = { province_id = 2101 } change_province_name = "Bloemfontein" add_core = VLK }
+		random_owned = { limit = { province_id = 2102 } change_province_name = "Winburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2103 } change_province_name = "Philippolis" add_core = VLK }
+		random_owned = { limit = { province_id = 2105 } change_province_name = "Pretoria" add_core = VLK }
+		random_owned = { limit = { province_id = 2106 } change_province_name = "Johannesburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2107 } change_province_name = "Klerksdorp" add_core = VLK }
+		random_owned = { limit = { province_id = 2108 } change_province_name = "Nylstroom" add_core = VLK }
+		random_owned = { limit = { province_id = 2109 } change_province_name = "Lydenburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2110 } change_province_name = "Hoedspruit" add_core = VLK }
+		random_owned = { limit = { province_id = 2088 } change_province_name = "Springbok" add_core = VLK }
+		random_owned = { limit = { province_id = 2558 } change_province_name = "De Aar" add_core = VLK }
+		random_owned = { limit = { province_id = 2093 } change_province_name = "Calvinia" add_core = VLK }
+		random_owned = { limit = { province_id = 2094 } change_province_name = "Kimberley" add_core = VLK }
+		random_owned = { limit = { province_id = 3273 } change_province_name = "Pietersburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2111 } change_province_name = "Durban" add_core = VLK }
+		random_owned = { limit = { province_id = 2105 } state_scope = { change_region_name = "Transvaal" } }
+		random_owned = { limit = { province_id = 2102 } state_scope = { change_region_name = "Vrystaat" } }
+		random_owned = { limit = { province_id = 2111 } state_scope = { change_region_name = "Natal" } }
+		any_pop = {
+			limit = { location = { is_core = VLK } }
+			militancy = -10
+		}
+		VLK = { all_core = { remove_core = THIS remove_core = ENG } }
+		any_owned = {
+			limit = { is_core = VLK }
+			secede_province = VLK
+		}
+		create_vassal = VLK
+		VLK = { prestige = -80 }
+		relation = { who = VLK value = 200 }
+		diplomatic_influence = { who = VLK value = 200 }
+		any_pop = { consciousness = 1 }
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 0
+				OR = {
+					government = proletarian_dictatorship
+					government = bourgeois_dictatorship
+					government = fascist_dictatorship
+					government = presidential_dictatorship
+				}
+			}
+			modifier = {
+				factor = 0.25
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 1.5
+				government = democracy
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 3
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 5
+			}
+			
+		}	
+	}
+	option = {
+		name = "EVT44330OPTB"
+		set_country_flag = VLK_independence_refused
+		any_owned = {
+			limit = { is_core = VLK }
+			add_province_modifier = {
+				name = nationalist_agitation
+				duration = 1095
+			}
+			any_pop = {
+				limit = { has_pop_culture = boer }
+				militancy = 3
+				consciousness = 5
+			}
+		}
+		random_owned = { limit = { province_id = 2113 } change_province_name = "Richards Bay" add_core = VLK }
+		random_owned = { limit = { province_id = 2112 } change_province_name = "Ladysmith" add_core = VLK }
+		random_owned = { limit = { province_id = 2100 } change_province_name = "Port St. Johns" add_core = VLK }
+		random_owned = { limit = { province_id = 2101 } change_province_name = "Bloemfontein" add_core = VLK }
+		random_owned = { limit = { province_id = 2102 } change_province_name = "Winburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2103 } change_province_name = "Philippolis" add_core = VLK }
+		random_owned = { limit = { province_id = 2105 } change_province_name = "Pretoria" add_core = VLK }
+		random_owned = { limit = { province_id = 2106 } change_province_name = "Johannesburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2107 } change_province_name = "Klerksdorp" add_core = VLK }
+		random_owned = { limit = { province_id = 2108 } change_province_name = "Nylstroom" add_core = VLK }
+		random_owned = { limit = { province_id = 2109 } change_province_name = "Lydenburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2110 } change_province_name = "Hoedspruit" add_core = VLK }
+		random_owned = { limit = { province_id = 2088 } change_province_name = "Springbok" add_core = VLK }
+		random_owned = { limit = { province_id = 2558 } change_province_name = "De Aar" add_core = VLK }
+		random_owned = { limit = { province_id = 2093 } change_province_name = "Calvinia" add_core = VLK }
+		random_owned = { limit = { province_id = 2094 } change_province_name = "Kimberley" add_core = VLK }
+		random_owned = { limit = { province_id = 3273 } change_province_name = "Pietersburg" add_core = VLK }
+		random_owned = { limit = { province_id = 2111 } change_province_name = "Durban" add_core = VLK }
+		random_owned = { limit = { province_id = 2105 } state_scope = { change_region_name = "Transvaal" } }
+		random_owned = { limit = { province_id = 2102 } state_scope = { change_region_name = "Vrystaat" } }
+		random_owned = { limit = { province_id = 2111 } state_scope = { change_region_name = "Natal" } }
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 1.75
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 0.5
+				government = democracy
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 3
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 5
+			}
+			modifier = {
+				factor = 2.0
+				exists = CAN
+			}
+			modifier = {
+				factor = 2.0
+				exists = AST
+			}
+		}
+	}
+	option = {
+		name = "EVT44334OPTC"
+		clr_country_flag = VLK_independence_refused
+		prestige = -20
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = VLK } }
+			militancy = -10
+		}
+		VLK = { all_core = { remove_core = THIS remove_core = ENG } }
+		release_vassal = VLK
+		VLK = {
+			prestige = -80
+		}
+		relation = {
+			who = VLK
+			value = 200
+		}
+		diplomatic_influence = {
+			who = VLK
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		change_tag_no_core_switch = VLK
+		ai_chance = {
+			factor = 0
+		}
+	}
+}

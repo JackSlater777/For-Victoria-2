@@ -1,0 +1,7 @@
+#British Honduras - Great Britain
+vassal = {
+	first = ENG
+	second = BLZ
+	start_date = 1815.1.1
+	end_date = 1857.1.1
+}

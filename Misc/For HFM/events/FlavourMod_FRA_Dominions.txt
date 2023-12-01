@@ -1,0 +1,1690 @@
+#The Dominion of Canada
+country_event = {
+	id = 99802
+	title = "EVTNAME99802"
+	desc = "EVTDESC99802"
+	picture = "danishgovernment"
+
+	major = yes
+
+	trigger = {
+		primary_culture = french
+		#is_greater_power = yes
+		war = no
+		year = 1867
+		any_owned_province = { is_core = FCA }
+		NOT = { exists = FCA }
+		AND = {
+			has_country_flag = acadia_organized 
+			has_country_flag = canada_organized
+		}
+		is_possible_vassal = FCA
+	}
+
+	mean_time_to_happen = {
+		months = 6
+		modifier = {
+			factor = 15
+			has_country_flag = FCA_independence_refused
+		}
+		modifier = {
+			factor = 3
+			NOT = { has_country_flag = charlottetown_conference }
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = FCA }
+				average_militancy = 3
+			}
+		}
+		modifier = {
+			factor = 0.5
+			year = 1870
+			NOT = { has_country_flag = FCA_independence_refused }
+		}
+	}
+	
+	option = {
+		name = "EVT99802OPTA"
+		clr_country_flag = FCA_independence_refused
+		#prestige = -10 #JackSlater fix
+		prestige = -25
+		#badboy = -3
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = FCA } }
+			militancy = -10
+		}
+		FCA = { all_core = { remove_core = THIS } }
+		any_owned = {
+			limit = { is_core = FCA }
+			secede_province = FCA
+		}
+		create_vassal = FCA
+		FCA = { prestige = -80 }
+		13 = {
+			add_province_modifier = {
+				name = vancouver_boom
+				duration = 365
+			}
+		}
+		14 = {
+			add_province_modifier = {
+				name = vancouver_boom
+				duration = 365
+			}
+		}
+		relation = { who = FCA value = 200 }
+		diplomatic_influence = { who = FCA value = 200 }
+		any_pop = { consciousness = 1 }
+		ai_chance = {
+			#factor = 80
+			factor = 85
+			modifier = {
+				factor = 0
+				OR = {
+					government = proletarian_dictatorship
+					government = bourgeois_dictatorship
+					government = fascist_dictatorship
+					government = presidential_dictatorship
+				}
+			}
+			modifier = {
+				factor = 0.25
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 1.5
+				government = democracy
+			}
+			modifier = {
+				#factor = 0.5
+				factor = 0.75
+				war_policy = jingoism
+			}
+			#modifier = {
+			#	factor = 0.75
+			#	war_policy = pro_military
+			#}
+			modifier = {
+				factor = 1.25
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 3
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 5
+			}
+			
+		}	
+	}
+	option = {
+		name = "EVT99802OPTB"
+		set_country_flag = FCA_independence_refused
+		any_owned = {
+			limit = { is_core = FCA }
+			add_province_modifier = {
+				name = nationalist_agitation
+				duration = 1095
+			}
+			any_pop = {
+				limit = { has_pop_culture = french_canadian }
+				militancy = 3
+				consciousness = 5
+			}
+		}
+		ai_chance = {
+			#factor = 20
+			factor = 15
+			modifier = {
+				factor = 1.75
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 0.5
+				government = democracy
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 3
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 5
+			}
+		}
+	}
+	option = {
+		name = "EVT99802OPTC"
+		clr_country_flag = FCA_independence_refused
+		#prestige = -10
+		prestige = -25
+		#badboy = -3
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = FCA } }
+			militancy = -10
+		}
+		FCA = {
+			all_core = { remove_core = THIS }
+		}
+		release_vassal = FCA
+		FCA = {
+			prestige = -80
+		}
+		relation = {
+			who = FCA
+			value = 200
+		}
+		diplomatic_influence = {
+			who = FCA
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		change_tag_no_core_switch = FCA
+		ai_chance = {
+			factor = 0
+		}	
+	}
+}
+
+#The Dominion of New Zeland
+country_event = {
+	id = 99803
+	title = "EVTNAME99803"
+	desc = "EVTDESC99803"
+	picture = "danishgovernment"
+
+	major = yes
+
+	trigger = {
+		primary_culture = french
+		#is_greater_power = yes
+		war = no
+		year = 1890
+		any_owned_province = { is_core = NZF }
+		NOT = { exists = NZF }
+		has_global_flag = french_nzl
+		is_possible_vassal = NZF
+	}
+
+	mean_time_to_happen = {
+		months = 6
+		modifier = {
+			factor = 10
+			has_country_flag = NZF_independence_refused
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = NZF }
+				average_militancy = 3
+			}
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = NZF }
+				average_militancy = 4
+			}
+		}
+		modifier = {
+			factor = 0.5
+			year = 1910
+			NOT = { has_country_flag = NZF_independence_refused }
+		}
+	}
+	
+	option = {
+		name = "EVT99802OPTA"
+		clr_country_flag = NZF_independence_refused
+		prestige = -20
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = NZF } }
+			militancy = -10
+		}
+		NZF = {
+			all_core = { remove_core = THIS }
+		}
+		any_owned = {
+			limit = { 
+				is_core = NZF
+			}
+			secede_province = NZF
+		}
+		create_vassal = NZF
+		NZF = { prestige = -80 }
+		relation = {
+			who = NZF
+			value = 200
+		}
+		diplomatic_influence = {
+			who = NZF
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 0
+				OR = {
+					government = proletarian_dictatorship
+					government = bourgeois_dictatorship
+					government = fascist_dictatorship
+					government = presidential_dictatorship
+				}
+			}
+			modifier = {
+				factor = 0.25
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 1.5
+				government = democracy
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 3
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 5
+			}
+			
+		}	
+	}
+	option = {
+		name = "EVT99802OPTB"
+		set_country_flag = NZF_independence_refused
+		any_owned = {
+			limit = { is_core = NZF }
+			any_pop = {
+				militancy = 3
+			}
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 1.75
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 0.5
+				government = democracy
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 3
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 5
+			}
+		}
+	}
+	
+	option = {
+		name = "EVT99803OPTC"
+		clr_country_flag = NZF_independence_refused
+		prestige = -20
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = NZF } }
+			militancy = -10
+		}
+		NZF = {
+			all_core = { remove_core = THIS }
+		}
+		release_vassal = NZF
+		NZF = { prestige = -80 }
+		relation = {
+			who = NZF
+			value = 200
+		}
+		diplomatic_influence = {
+			who = NZF
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		change_tag_no_core_switch = NZF
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#The Dominion of Louisiana
+country_event = {
+	id = 99804
+	title = "EVTNAME99804"
+	desc = "EVTDESC99804"
+	picture = "danishgovernment"
+
+	major = yes
+
+	trigger = {
+		primary_culture = french
+		war = no
+		year = 1870
+		any_owned_province = { is_core = ULA }
+		NOT = { exists = ULA }
+		has_country_flag = louisiana_organized
+		ULA = {
+			all_core = {
+				OR = {
+					owned_by = THIS
+					owner = {
+						in_sphere = THIS
+						OR = {
+							is_vassal = no
+							vassal_of = THIS
+						}
+						war = no
+						is_greater_power = no
+					}
+				}
+			}				
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 6
+		modifier = {
+			factor = 10
+			has_country_flag = ULA_independence_refused
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = ULA }
+				average_militancy = 3
+			}
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = ULA }
+				average_militancy = 4
+			}
+		}
+		modifier = {
+			factor = 0.5
+			year = 1900
+			NOT = { has_country_flag = ULA_independence_refused }
+		}
+	}
+
+	option = {
+		name = "EVT99802OPTA"
+		clr_country_flag = ULA_independence_refused
+		prestige = -20
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = ULA } }
+			militancy = -10
+		}
+		ULA = {
+			all_core = { remove_core = THIS }
+		}
+		any_owned = {
+			limit = { 
+				is_core = ULA
+			}
+			secede_province = ULA
+		}
+		create_vassal = ULA
+		ULA = { prestige = -80 }
+		relation = {
+			who = ULA
+			value = 200
+		}
+		diplomatic_influence = {
+			who = ULA
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 0
+				OR = {
+					government = proletarian_dictatorship
+					government = bourgeois_dictatorship
+					government = fascist_dictatorship
+					government = presidential_dictatorship
+				}
+			}
+			modifier = {
+				factor = 0.25
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 1.5
+				government = democracy
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 3
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 5
+			}
+			
+		}	
+	}
+	option = {
+		name = "EVT99802OPTB"
+		set_country_flag = ULA_independence_refused
+		any_owned = {
+			limit = { is_core = ULA }
+			any_pop = {
+				militancy = 3
+			}
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 1.75
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 0.5
+				government = democracy
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 3
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 5
+			}
+		}
+	}
+	
+	option = {
+		name = "EVT99804OPTC"
+		clr_country_flag = ULA_independence_refused
+		prestige = -20
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = ULA } }
+			militancy = -10
+		}
+		ULA = {
+			all_core = { remove_core = THIS }
+		}
+		release_vassal = ULA
+		ULA = { prestige = -80 }
+		relation = {
+			who = ULA
+			value = 200
+		}
+		diplomatic_influence = {
+			who = ULA
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		change_tag_no_core_switch = ULA
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#The Dominion of Quebec
+country_event = {
+	id = 99805
+	title = "EVTNAME44316"
+	desc = "EVTDESC44316"
+	picture = "danishgovernment"
+
+	major = yes
+
+	trigger = {
+		primary_culture = french
+		war = no
+		year = 1870
+		any_owned_province = { is_core = QUE }
+		NOT = { exists = QUE }
+		is_possible_vassal = QUE
+		has_country_flag = quebec_and_acadia_only
+	}
+
+	mean_time_to_happen = {
+		months = 12
+		modifier = {
+			factor = 10
+			has_country_flag = QUE_independence_refused
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = QUE }
+				average_militancy = 3
+			}
+		}
+		modifier = {
+			factor = 0.5
+			year = 1875
+			NOT = { has_country_flag = QUE_independence_refused }
+		}
+	}
+
+	option = {
+		name = "EVT44315OPTA"
+		clr_country_flag = QUE_independence_refused
+		prestige = -10
+		badboy = -3
+		any_pop = {
+			limit = { location = { is_core = QUE } }
+			militancy = -10
+		}
+		CAN_60 = {
+			add_core = QUE
+			remove_core = RPL
+		}
+		QUE = {
+			all_core = { remove_core = THIS }
+		}
+		release_vassal = QUE
+		QUE = { prestige = -100 }
+		relation = {
+			who = QUE
+			value = 200
+		}
+		diplomatic_influence = {
+			who = QUE
+			value = 200
+		}
+		any_pop = { consciousness = 1 }
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 0
+				OR = {
+					government = proletarian_dictatorship
+					government = bourgeois_dictatorship
+					government = fascist_dictatorship
+					government = presidential_dictatorship
+				}
+			}
+			modifier = {
+				factor = 0.25
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 1.5
+				government = democracy
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 3
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 5
+			}
+			
+		}	
+	}
+	option = {
+		name = "EVT44315OPTB"
+		set_country_flag = QUE_independence_refused
+		any_owned = {
+			limit = { is_core = QUE }
+			add_province_modifier = {
+				name = nationalist_agitation
+				duration = 1095
+			}
+			any_pop = {
+				limit = { has_pop_culture = french_canadian }
+				militancy = 6
+				consciousness = 6
+			}
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 1.75
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 0.5
+				government = democracy
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 3
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 5
+			}
+		}
+	}
+	
+	option = {
+		name = "EVT44316OPTC"
+		clr_country_flag = QUE_independence_refused
+		prestige = -10
+		badboy = -3
+		any_pop = {
+			limit = { location = { is_core = QUE } }
+			militancy = -10
+		}
+		CAN_60 = {
+			add_core = QUE
+			remove_core = RPL
+		}
+		QUE = {
+			all_core = { remove_core = THIS }
+		}
+		release_vassal = QUE
+		QUE = { prestige = -100 }
+		relation = {
+			who = QUE
+			value = 200
+		}
+		diplomatic_influence = {
+			who = QUE
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		change_tag_no_core_switch = QUE
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#Acadie Dominion
+country_event = {
+	id = 99806
+	title = "EVTNAME44317"
+	desc = "EVTDESC44317"
+	picture = "danishgovernment"
+
+	major = yes
+
+	trigger = {
+		primary_culture = french
+		war = no
+		any_owned_province = { is_core = ACA }
+		NOT = { exists = ACA }
+		is_possible_vassal = ACA
+		has_country_flag = quebec_and_acadia_only
+	}
+
+	mean_time_to_happen = {
+		months = 24
+		modifier = {
+			factor = 10
+			has_country_flag = ACA_independence_refused
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = ACA }
+				average_militancy = 3
+			}
+		}
+		modifier = {
+			factor = 0.5
+			year = 1885
+			NOT = { has_country_flag = ACA_independence_refused }
+		}
+	}
+
+	option = {
+		name = "EVT44315OPTA"
+		clr_country_flag = ACA_independence_refused
+		prestige = -10
+		badboy = -3
+		any_pop = {
+			limit = { location = { is_core = ACA } }
+			militancy = -10
+		}
+		ACA = {
+			all_core = { remove_core = THIS }
+		}
+		any_owned = { 
+			limit = { 
+				is_core = ACA
+			}
+			secede_province = ACA
+		}
+		create_vassal = ACA
+		ACA = { prestige = -100 }
+		relation = {
+			who = ACA
+			value = 200
+		}
+		diplomatic_influence = {
+			who = ACA
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 0
+				OR = {
+					government = proletarian_dictatorship
+					government = bourgeois_dictatorship
+					government = fascist_dictatorship
+					government = presidential_dictatorship
+				}
+			}
+			modifier = {
+				factor = 0.25
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 1.5
+				government = democracy
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 3
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 5
+			}
+			
+		}	
+	}
+	option = {
+		name = "EVT44315OPTB"
+		set_country_flag = ACA_independence_refused
+		any_owned = {
+			limit = { is_core = ACA }
+			add_province_modifier = {
+				name = nationalist_agitation
+				duration = 1095
+			}
+			any_pop = {
+				limit = { has_pop_culture = french_canadian }
+				militancy = 6
+				consciousness = 6
+			}
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 1.75
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 0.5
+				government = democracy
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 3
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 5
+			}
+		}
+	}
+	
+	option = {
+		name = "EVT44317OPTC"
+		clr_country_flag = ACA_independence_refused
+		prestige = -10
+		badboy = -3
+		any_pop = {
+			limit = { location = { is_core = ACA } }
+			militancy = -10
+		}
+		ACA = {
+			all_core = { remove_core = THIS }
+		}
+		release_vassal = ACA
+		ACA = { prestige = -100 }
+		relation = {
+			who = ACA
+			value = 200
+		}
+		diplomatic_influence = {
+			who = ACA
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		change_tag_no_core_switch = ACA
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#The Australian Dominion
+country_event = {
+	id = 99807
+	title = "EVTNAME44332"
+	desc = "EVTDESC44332"
+	picture = "danishgovernment"
+
+	major = yes
+
+	trigger = {
+		war = no
+		year = 1901
+		any_owned_province = { is_core = FAS }
+		NOT = { exists = FAS }
+		is_possible_vassal = FAS
+	}
+
+	mean_time_to_happen = {
+		months = 6
+		modifier = {
+			factor = 10
+			has_country_flag = FAS_independence_refused
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = FAS }
+				average_militancy = 3
+			}
+		}
+		modifier = {
+			factor = 0.8
+			any_state = {
+				any_owned_province = { is_core = FAS }
+				average_militancy = 4
+			}
+		}
+		modifier = {
+			factor = 0.5
+			year = 1910
+			NOT = { has_country_flag = FAS_independence_refused }
+		}
+	}
+
+	option = {
+		name = "EVT44330OPTA"
+		clr_country_flag = FAS_independence_refused
+		prestige = -20
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = FAS } }
+			militancy = -10
+		}
+		FAS = { all_core = { remove_core = THIS remove_core = ENG } }
+		any_owned = { limit = { is_core = FAS } secede_province = FAS }
+		create_vassal = FAS
+		FAS = { prestige = -80 }
+		relation = {
+			who = FAS
+			value = 200
+		}
+		diplomatic_influence = {
+			who = FAS
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 0
+				OR = {
+					government = proletarian_dictatorship
+					government = bourgeois_dictatorship
+					government = fascist_dictatorship
+					government = presidential_dictatorship
+				}
+			}
+			modifier = {
+				factor = 0.25
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 1.5
+				government = democracy
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 3
+			}
+			modifier = {
+				factor = 1.2
+				militancy = 5
+			}
+			modifier = {
+				factor = 2.0
+				exists = CAN
+			}
+			
+		}	
+	}
+	option = {
+		name = "EVT44330OPTB"
+		set_country_flag = FAS_independence_refused
+		any_owned = {
+			limit = { is_core = FAS }
+			any_pop = {
+				militancy = 3
+			}
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 1.75
+				government = absolute_monarchy
+			}
+			modifier = {
+				factor = 0.5
+				government = democracy
+			}
+			modifier = {
+				factor = 1.5
+				war_policy = jingoism
+			}
+			modifier = {
+				factor = 1.25
+				war_policy = pro_military
+			}
+			modifier = {
+				factor = 0.75
+				war_policy = anti_military
+			}
+			modifier = {
+				factor = 0.5
+				war_policy = pacifism
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 3
+			}
+			modifier = {
+				factor = 0.8
+				militancy = 5
+			}
+		}
+	}
+	
+	option = {
+		name = "EVT44332OPTC"
+		clr_country_flag = FAS_independence_refused
+		prestige = -20
+		badboy = -5
+		any_pop = {
+			limit = { location = { is_core = FAS } }
+			militancy = -10
+		}
+		FAS = {
+			all_core = { remove_core = THIS remove_core = ENG }
+		}
+		release_vassal = FAS
+		FAS = { prestige = -80 }
+		relation = {
+			who = FAS
+			value = 200
+		}
+		diplomatic_influence = {
+			who = FAS
+			value = 200
+		}
+		any_pop = {
+			consciousness = 1
+		}
+		change_tag_no_core_switch = FAS
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#The Northwest Territories - France/Canada Annex White Horse
+country_event = {
+	id = 99808
+	title = "EVTNAME44339"
+	desc = "EVTDESC44339"
+	picture = "Southpole3"
+	
+	trigger = {
+		OR = {
+			tag = FCA
+			AND = {
+				primary_culture = french
+				capital = 425
+			}
+		}
+		war = no
+		money = 1100
+		OR = {
+			revolution_n_counterrevolution = 1
+			year = 1880
+		}
+		OR = {
+			NOT = { has_global_flag = berlin_conference }
+			NOT = { invention = mission_to_civilize }
+			NOT = { invention = colonial_negotiations }
+			AND = {
+				is_greater_power = no
+				is_secondary_power = no
+			}
+		}
+		OR = {
+			AND = {
+				6 = { empty = yes } #Whitehorse
+				owns = 17
+			}
+			AND = {
+				6 = { empty = no }
+				7 = { empty = yes } #Dawson
+				OR = {
+					owns = 6
+					owns = 8
+				}
+			}
+			AND = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = yes } #Ross River
+				OR = {
+					owns = 17
+					owns = 2629
+				}
+			}		
+			AND = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = yes } #Fort Resolution
+				OR = {
+					owns = 23
+					owns = 43
+				}
+			}
+			AND = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = yes } #Fort Liard
+				OR = {
+					owns = 2629
+					owns = 8
+				}
+			}
+			AND = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = yes } #Fort Simpson
+				OR = {
+					owns = 2598
+					owns = 11
+				}
+			}
+			AND = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = no }
+				11 = { empty = yes } #Echo Bay
+				OR = {
+					owns = 23
+					owns = 2596
+				}
+			}
+			AND = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = no }
+				11 = { empty = no }
+				12 = { empty = yes } #Reliance
+				OR = {
+					owns = 43
+					owns = 2596
+				}
+			}
+			AND = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = no }
+				11 = { empty = no }
+				12 = { empty = no }
+				10 = { empty = yes } #Inuvik
+				OR = {
+					owns = 9
+					owns = 8
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 12
+		modifier = {
+			factor = 0.2
+			6 = { empty = yes }
+		}
+		modifier = {
+			factor = 3
+			6 = { empty = no }
+			7 = { empty = no }
+			8 = { empty = no }
+			2596 = { empty = no }
+			NOT = { year = 1880 }
+		}
+		modifier = {
+			factor = 1.5
+			6 = { empty = no }
+			7 = { empty = no }
+			8 = { empty = no }
+			2596 = { empty = no }
+			year = 1880
+			NOT = { year = 1900 }
+		}
+	}
+
+	option = {
+		name = "EVT44339OPTA"
+		treasury = -1000
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = no }
+				11 = { empty = no }
+				12 = { empty = no }
+				10 = { empty = yes }
+				OR = {
+					9 = { owned_by = THIS }
+					8 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -3 }
+			10 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = no }
+				11 = { empty = no }
+				12 = { empty = yes }
+				OR = {
+					43 = { owned_by = THIS }
+					2596 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -3 }
+			12 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = no }
+				11 = { empty = yes }
+				OR = {
+					23 = { owned_by = THIS }
+					2596 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -3 }
+			11 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = no }
+				9 = { empty = yes }
+				OR = {
+					2598 = { owned_by = THIS }
+					11 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -3 }
+			9 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = no }
+				2598 = { empty = yes }
+				OR = {
+					2629 = { owned_by = THIS }
+					8 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -3 }
+			2598 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = no }
+				2596 = { empty = yes }
+				OR = {
+					23 = { owned_by = THIS }
+					43 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -5 }
+			2596 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = no }
+				8 = { empty = yes }
+				OR = {
+					17 = { owned_by = THIS }
+					2629 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -3 }
+			8 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = no }
+				7 = { empty = yes }
+				OR = {
+					6 = { owned_by = THIS }
+					8 = { owned_by = THIS }
+				}
+			}
+			owner = { prestige = -3 }
+			7 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+		random_owned = {
+			limit = {
+				6 = { empty = yes }
+				17 = { owned_by = THIS }
+			}
+			owner = { prestige = -5 }
+			6 = { secede_province = THIS add_core = FCA any_pop = { literacy = -0.99 } }
+		}
+	} 
+}
+
+#The Alaskan Dominion
+country_event = {
+	id = 99809
+	title = "EVTNAME44340"
+	desc = "EVTDESC44340"
+	picture = "alaska"
+		
+	trigger = {
+		war = no
+		FCA = { war = no }
+		is_our_vassal = FCA
+		year = 1880
+		NOT = { capital_scope = { continent = north_america } }
+		any_owned_province = {
+			region = USA_1
+			controlled_by = THIS
+			any_neighbor_province = { owned_by = FCA }
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 6
+	}
+	
+	option = {
+		name = "EVT44340OPTA"
+		USA_1 = {
+			remove_core = THIS
+			add_core = FCA
+		}
+		any_owned = {
+			limit = { region = USA_1 }
+			secede_province = FCA
+		}
+		random_country = {
+			limit = {
+				is_sphere_leader_of = FCA
+				NOT = { tag = THIS }
+			}
+			diplomatic_influence = { who = FCA value = -100 }
+		}
+		diplomatic_influence = { who = FCA value = 100 }
+		relation = { who = FCA value = 50 }
+		ai_chance = { factor = 75 }
+	}
+	
+	option = {
+		name = "EVT44340OPTB"
+		prestige = -10
+		badboy = -3
+		any_pop = {
+			limit = { location = { is_core = LSK } }
+			militancy = -10
+		}
+		LSK = {
+			all_core = { remove_core = ENG remove_core = THIS }
+		}
+		release_vassal = LSK
+		LSK = {
+			prestige = -100
+			primary_culture = french_canadian
+			#add_accepted_culture = french
+			relation = { who = FCA value = 200 }
+		}
+		relation = {
+			who = LSK
+			value = 200
+		}
+		diplomatic_influence = {
+			who = LSK
+			value = 200
+		}
+		ai_chance = { factor = 20 }
+	}
+	
+	option = {
+		name = "EVT44340OPTC"
+		USA_1 = {
+			remove_core = THIS
+		}
+		any_owned = {
+			limit = { is_core = LSK }
+			any_pop = {
+				militancy = 3
+			}
+		}
+		ai_chance = { factor = 5 }
+	}
+	
+	option = {
+		name = "EVT44340OPTD"
+		prestige = -10
+		badboy = -3
+		any_pop = {
+			limit = { location = { is_core = LSK } }
+			militancy = -10
+		}
+		LSK = {
+			all_core = { remove_core = ENG remove_core = THIS }
+		}
+		release_vassal = LSK
+		LSK = {
+			prestige = -100
+			add_accepted_culture = french_canadian
+			relation = { who = FCA value = 200 }
+		}
+		relation = {
+			who = LSK
+			value = 200
+		}
+		diplomatic_influence = {
+			who = LSK
+			value = 200
+		}
+		change_tag_no_core_switch = LSK
+		ai_chance = { factor = 0 }
+	}
+}
+
+#Canada cores on Alaska
+country_event = {
+	id = 99810
+	title = "EVTNAME3697008" 
+	desc = "EVTDESC3697008"
+	picture = "danishgovernment"
+
+	fire_only_once = yes
+	
+	trigger = {
+		primary_culture = french
+		capital = 425
+		FCA = { 
+			exists = yes 
+			vassal_of = THIS
+			owns = 15
+			owns = 16
+			owns = 17
+		}
+		LSK  = { all_core = { owned_by = THIS } }
+	}
+		
+	mean_time_to_happen = { days = 1 }
+	
+	option = {
+		name = "EVT3697007OPTA"
+		relation = { who = FCA value = 100 }
+		diplomatic_influence = { who = FCA value = 100 }
+		badboy = -1
+		any_owned = {
+			limit = { is_core = LSK }
+			secede_province = FCA
+			add_core = FCA
+			remove_core = THIS
+		}
+		ai_chance = { factor = 100 }
+	}
+	
+	option = {
+		name = "EVT3697007OPTB"
+		relation = { who = FCA value = -50 }
+		diplomatic_influence = { who = FCA value = -50 }
+		any_owned = {
+			limit = { is_core = LSK }
+			remove_core = THIS
+		}
+		ai_chance = { factor = 0 }
+	}
+}

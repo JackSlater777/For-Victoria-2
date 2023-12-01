@@ -1,0 +1,179 @@
+#Claims to Spain
+country_event = {
+	id = 777777771
+	title = "lulw"
+	desc = "lulw"
+	picture = ""
+	
+	trigger = {
+                OR = {
+			tag = TEX
+			tag = SON
+			tag = RGR
+			tag = YUC
+			#tag = CAL
+			tag = MEX
+			tag = CHP
+			tag = UCA
+			tag = GUA
+			tag = HON
+			tag = ELS
+			tag = NIC
+			tag = COS
+			tag = MSK
+			tag = LOS
+			tag = HAI
+			tag = DOM
+			tag = PNM
+			tag = CLM
+			tag = VNZ
+			tag = ECU
+			tag = GCO
+			tag = PEU
+			tag = BOL
+			tag = SPU
+			tag = PBC
+			tag = CHL
+			tag = PRG
+			tag = URU
+			tag = ARG
+			tag = ARC
+			tag = SBA
+			tag = CRT
+			tag = ENT
+			tag = LPL
+			tag = PTG
+		}
+		exists = yes
+                ai = yes
+                is_greater_power = no
+		is_vassal = no
+		NOT = { has_country_flag = claims_to_spain }
+		has_global_flag = reconquista
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "ok"
+                random_country = {
+			limit = {
+				tag = SPA
+                                exists = yes
+                        }
+			casus_belli = {
+				target = THIS
+				type = make_puppet
+				months = 1200
+			}
+                }
+                random_country = {
+			limit = {
+				tag = SPC
+                                exists = yes
+                        }
+			casus_belli = {
+				target = THIS
+				type = make_puppet
+				months = 1200
+			}
+                }
+                random_country = {
+			limit = {
+				tag = IBR
+                                exists = yes
+                        }
+			casus_belli = {
+				target = THIS
+				type = make_puppet
+				months = 1200
+			}
+                }
+		#add_casus_belli = {
+		#	target = SPA
+		#	type = make_puppet
+		#	months = 1200
+		#}
+		#add_casus_belli = {
+		#	target = SPC
+		#	type = make_puppet
+		#	months = 1200
+		#}
+		#add_casus_belli = {
+		#	target = IBR
+		#	type = make_puppet
+		#	months = 1200
+		#}
+		set_country_flag = claims_to_spain
+	}		
+}
+
+#Claims to Iberia and Portugal
+country_event = {
+	id = 777777772
+	title = "lulw"
+	desc = "lulw"
+	picture = ""
+	
+	trigger = {
+                tag = BRZ
+		exists = yes
+                ai = yes
+                is_greater_power = no
+		is_vassal = no
+		NOT = { has_country_flag = claims_to_portugal }
+                OR = {
+                	IBR = { exists = yes }
+                	POR = { exists = yes }
+                }
+		has_global_flag = reconquista_brazil
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "ok"
+                random_country = {
+			limit = {
+				tag = IBR
+                                exists = yes
+                        }
+			casus_belli = {
+				target = THIS
+				type = make_puppet
+				months = 1200
+			}
+                }
+                random_country = {
+			limit = {
+				tag = POR
+                                exists = yes
+                        }
+			casus_belli = {
+				target = THIS
+				type = make_puppet
+				months = 1200
+			}
+                }
+                set_country_flag = claims_to_portugal
+		#add_casus_belli = {
+		#	target = SPA
+		#	type = make_puppet
+		#	months = 1200
+		#}
+		#add_casus_belli = {
+		#	target = SPC
+		#	type = make_puppet
+		#	months = 1200
+		#}
+		#add_casus_belli = {
+		#	target = IBR
+		#	type = make_puppet
+		#	months = 1200
+		#}
+	}		
+}

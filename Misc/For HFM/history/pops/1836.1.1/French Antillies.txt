@@ -1,0 +1,103 @@
+#French Antilles (319200)
+#Ruled by France 1836
+#Martinique (109800/27450 POPS)
+2228 = {
+	aristocrats = {
+		culture = french
+		religion = catholic
+		size = 750
+	}
+
+	clergymen = {
+		culture = french
+		religion = catholic
+		size = 50
+	}
+
+	artisans = {
+		culture = french
+		religion = catholic
+		size = 900
+	}
+
+	soldiers = {
+		culture = french
+		religion = catholic
+		size = 250
+	}
+
+	slaves = {
+		culture = afro_antillean
+		religion = catholic
+		size = 25500
+	}
+}
+#Guadeloupe (150000/37500 POPS)
+2230 = {
+	aristocrats = {
+		culture = french
+		religion = catholic
+		size = 850
+	}
+
+	clergymen = {
+		culture = french
+		religion = catholic
+		size = 50
+	}
+
+	artisans = {
+		culture = french
+		religion = catholic
+		size = 1300
+	}
+
+	soldiers = {
+		culture = french
+		religion = catholic
+		size = 300
+	}
+
+	farmers = {
+		culture = french
+		religion = catholic
+		size = 600
+	}
+
+	slaves = {
+		culture = afro_antillean
+		religion = catholic
+		size = 34450
+	}
+
+}
+
+#Marigot - Former Baffin Island (4000/1000 POPS)
+45 = {
+	
+	aristocrats = {
+		culture = french
+		religion = catholic
+		size = 10
+	}
+	
+	clergymen = {
+		culture = french
+		religion = catholic
+		size = 25
+	}
+	
+	farmers = {
+		culture = french
+		religion = catholic
+		size = 300
+	}
+
+	slaves = {
+		culture = afro_antillean
+		religion = catholic
+		size = 665
+	}
+
+
+}

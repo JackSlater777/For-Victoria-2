@@ -1,0 +1,1552 @@
+political_decisions = {
+	colonial_reconquista = {
+		picture = spain_reconquest
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+			}
+			NOT = { year = 1890 }
+			NOT = { has_global_flag = reconquista }
+		}
+
+		allow = {
+			is_greater_power = yes
+			war = no
+			war_policy = jingoism
+		}
+
+		effect = {
+			prestige = 20
+			badboy = 20
+			any_country = {
+				limit = {
+					OR = {
+						capital_scope = { continent = south_america }
+						capital_scope = { continent = north_america }
+					}
+					NOT = { 
+						tag = USA
+						tag = BRZ
+					}
+				}
+				country_event = {
+					id = 99988
+					days = 15
+				}
+			}	
+			any_pop = {
+				limit = { 
+					is_culture_group = iberian
+					pop_majority_ideology = reactionary
+				}
+				militancy = -5
+			}
+			any_pop = {
+				limit = { 
+					is_culture_group = iberian
+					pop_majority_ideology = conservative
+				}
+				militancy = -5
+			}
+			any_pop = {
+				limit = { 
+					is_culture_group = iberian
+					pop_majority_ideology = liberal
+				}
+				militancy = 2
+			}
+			set_global_flag = reconquista
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	reconquista_of_brazil = {
+		picture = spain_reconquest
+		potential = {
+			OR = {
+				tag = IBR
+                                AND = {
+					tag = POR
+					nationalism_n_imperialism = 1
+                        	}
+			}
+			NOT = { year = 1890 }
+			NOT = { has_global_flag = reconquista_brazil }
+		}
+
+		allow = {
+			is_greater_power = yes
+			war = no
+			war_policy = jingoism
+		}
+
+		effect = {
+			prestige = 20
+			badboy = 20
+			any_country = {
+				limit = {
+					OR = {
+						capital_scope = { continent = south_america }
+						capital_scope = { continent = north_america }
+					}
+					NOT = { 
+						tag = USA
+					}
+				}
+				country_event = {
+					id = 99988
+					days = 15
+				}
+			}	
+			any_pop = {
+				limit = { 
+					is_culture_group = iberian
+					pop_majority_ideology = reactionary
+				}
+				militancy = -5
+			}
+			any_pop = {
+				limit = { 
+					is_culture_group = iberian
+					pop_majority_ideology = conservative
+				}
+				militancy = -5
+			}
+			any_pop = {
+				limit = { 
+					is_culture_group = iberian
+					pop_majority_ideology = liberal
+				}
+				militancy = 2
+			}
+			set_global_flag = reconquista_brazil
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	return_cores_CGC = { 
+		picture = return_cores_img
+		potential = {
+			primary_culture = spanish
+			CGC = { vassal_of = THIS} 
+			any_owned_province = { is_core = CGC NOT = { is_core = THIS } } 
+		}
+		allow = { war = no } 		
+		effect = {  any_owned = { limit = { NOT = { is_core = THIS } is_core = CGC } secede_province = CGC } } 
+	}
+	
+	return_cores_VNG = { 
+		picture = return_cores_img
+		potential = { 
+			primary_culture = spanish
+			VNG = { vassal_of = THIS }
+			any_owned_province = { is_core = VNG NOT = { is_core = THIS } } 
+		}
+		allow = { war = no } 
+		effect = { any_owned = { limit = { NOT = { is_core = THIS } is_core = VNG } secede_province = VNG } } 
+	}
+	
+	return_cores_VLP = { 
+		picture = return_cores_img
+		potential = { 
+			primary_culture = spanish
+			VLP = { vassal_of = THIS } 
+			any_owned_province = { is_core = VLP NOT = { is_core = THIS } } 
+		}
+		allow = { war = no } 
+		effect = { any_owned = { limit = { NOT = { is_core = THIS } is_core = VLP } secede_province = VLP } } 
+	}
+	
+	return_cores_VOP = { 
+		picture = return_cores_img
+		potential = { 
+			primary_culture = spanish
+			VOP = { vassal_of = THIS }
+			any_owned_province = { is_core = VOP NOT = { is_core = THIS } } 
+		}
+		allow = { war = no }
+		effect = { any_owned = { limit = { NOT = { is_core = THIS } is_core = VOP } secede_province = VOP } } 
+	}
+	
+	return_cores_VNS = { 
+		picture = return_cores_img
+		potential = { 
+			primary_culture = spanish
+			VNS = { vassal_of = THIS } 
+			any_owned_province = { is_core = VNS NOT = { is_core = THIS } } 
+		}
+		allow = { war = no } 
+		effect = { any_owned = { limit = { NOT = { is_core = THIS } is_core = VNS } secede_province = VNS } } 
+	}
+
+	return_cores_BRZ = { 
+		picture = return_cores_img
+		potential = {
+			OR = {
+				primary_culture = spanish
+				primary_culture = portuguese
+			}
+			BRZ = { vassal_of = THIS } 
+			any_owned_province = { is_core = BRZ NOT = { is_core = THIS } } 
+		}
+		allow = { war = no } 
+		effect = { any_owned = { limit = { NOT = { is_core = THIS } is_core = BRZ } secede_province = BRZ } } 
+	}
+	
+	spanish_reconquest_vns = {
+		picture = spain_reconquest_vns
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			has_global_flag = reconquista
+			VNS = { exists = no }
+			NOT = { has_country_flag = reconquest_vns }
+		}
+
+		allow = {
+			war = no
+			MEX = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			TEX = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			2193 = {
+				OR = {
+					owned_by = THIS
+					owner = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+				}
+			}
+			2191 = {
+				OR = {
+					owned_by = THIS
+					owner = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+				}
+			}
+			2186 = {
+				OR = {
+					owned_by = THIS
+					owner = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+				}
+			}
+			2197 = {
+				OR = {
+					owned_by = THIS
+					owner = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+				}
+			}
+			2201 = {
+				OR = {
+					owned_by = THIS
+					owner = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+				}
+			}
+		}
+
+		effect = {	
+			prestige = 5
+			MEX = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+                	random_country = {
+				limit = {
+					tag = TEX
+					exists = yes
+					in_sphere = THIS
+					vassal_of = THIS
+                        	}
+				TEX = {
+					government = democracy
+					all_core = { add_core = VNS }
+                        	}
+                                THIS = { inherit = TEX }
+                	}
+			COS = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+			ELS = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+			HON = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+			NIC = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+			GUA = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+			LOS = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+			UCA = {
+				government = democracy
+				all_core = {
+					add_core = VNS
+				}
+			}
+			inherit = MEX
+			inherit = COS
+			inherit = ELS
+			inherit = HON
+			inherit = NIC
+			inherit = GUA
+			inherit = LOS
+			inherit = UCA
+			release_vassal = VNS
+			relation = {
+				who = VNS
+				value = 400
+			}
+			diplomatic_influence = {
+				who = VNS
+				value = 200
+			}	
+			VNS = {
+				primary_culture = mexican
+				add_accepted_culture = central_american
+				set_country_flag = post_colonial_country
+				government = colonial_company
+				ruling_party_ideology = conservative
+				political_reform = none_voting
+				political_reform = party_appointed
+				political_reform = no_meeting
+				political_reform = state_press
+				political_reform = state_controlled
+				political_reform = underground_parties
+			}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = yes_slavery }
+                        	}
+				VNS = { owner = { political_reform = yes_slavery }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = freedom_of_womb }
+                        	}
+				VNS = { owner = { political_reform = freedom_of_womb }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = no_slavery }
+                        	}
+				VNS = { owner = { political_reform = no_slavery }}
+                	}
+			create_alliance = VNS
+			create_vassal = VNS
+			set_country_flag = reconquest_vns
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	spanish_reconquest_vng = {
+		picture = spain_reconquest_vng
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			has_global_flag = reconquista
+			VNG = { exists = no }
+			NOT = { has_country_flag = reconquest_vng }
+		}
+
+		allow = {
+			war = no
+			CLM = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			VNZ = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			ECU = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+		}
+
+		effect = {
+			prestige = 5
+			CLM = {
+				government = democracy
+				all_core = {
+					add_core = VNG
+				}
+			}
+			VNZ = {
+				government = democracy
+				all_core = {
+					add_core = VNG
+				}
+			}
+			ECU = {
+				government = democracy
+				all_core = {
+					add_core = VNG
+				}
+			}
+			inherit = CLM
+			inherit = VNZ
+			inherit = ECU
+			release_vassal = VNG
+			relation = {
+				who = VNG
+				value = 400
+			}
+			diplomatic_influence = {
+				who = VNG
+				value = 200
+			}	
+			VNG = { 
+				primary_culture = north_andean
+				add_accepted_culture = central_american
+				set_country_flag = post_colonial_country
+				government = colonial_company
+				ruling_party_ideology = conservative
+				political_reform = none_voting
+				political_reform = party_appointed
+				political_reform = no_meeting
+				political_reform = state_press
+				political_reform = state_controlled
+				political_reform = underground_parties
+			}
+                  	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = yes_slavery }
+                        	}
+				VNG = { owner = { political_reform = yes_slavery }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = freedom_of_womb }
+                        	}
+				VNG = { owner = { political_reform = freedom_of_womb }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = no_slavery }
+                        	}
+				VNG = { owner = { political_reform = no_slavery }}
+                	}
+			create_alliance = VNG
+			create_vassal = VNG
+			set_country_flag = reconquest_vng
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	spanish_reconquest_vop = {
+		picture = spain_reconquest_vop
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			has_global_flag = reconquista
+			VOP = { exists = no }
+			NOT = { has_country_flag = reconquest_vop }
+		}
+
+		allow = {
+			war = no
+			PEU = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			BOL = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			SPU = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+		}
+
+		effect = {
+			prestige = 5
+			PEU = {
+				government = democracy
+				all_core = {
+					add_core = VOP
+				}
+			}
+			BOL = {
+				government = democracy
+				all_core = {
+					add_core = VOP
+				}
+			}
+			SPU = {
+				government = democracy
+				all_core = {
+					add_core = VOP
+				}
+			}
+			inherit = PEU
+			inherit = BOL
+			inherit = SPU			
+			release_vassal = VOP
+			relation = {
+				who = VOP
+				value = 400
+			}
+			diplomatic_influence = {
+				who = VOP
+				value = 200
+			}	
+			VOP = { 
+				primary_culture = south_andean
+				set_country_flag = post_colonial_country
+				government = colonial_company
+				ruling_party_ideology = conservative
+				political_reform = none_voting
+				political_reform = party_appointed
+				political_reform = no_meeting
+				political_reform = state_press
+				political_reform = state_controlled
+				political_reform = underground_parties
+			}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = yes_slavery }
+                        	}
+				VOP = { owner = { political_reform = yes_slavery }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = freedom_of_womb }
+                        	}
+				VOP = { owner = { political_reform = freedom_of_womb }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = no_slavery }
+                        	}
+				VOP = { owner = { political_reform = no_slavery }}
+                	}
+			create_alliance = VOP
+			create_vassal = VOP
+			set_country_flag = reconquest_vop
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	spanish_reconquest_cgc = {
+		picture = spain_reconquest_cgc
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			has_global_flag = reconquista
+			CGC = { exists = no }
+			NOT = { has_country_flag = reconquest_cgc }
+		}
+
+		allow = {
+			war = no
+			CHL = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+		}
+
+		effect = {
+			prestige = 5
+			CHL = {
+				government = democracy
+				all_core = {
+					add_core = CGC
+				}
+			}
+			inherit = CHL
+			release_vassal = CGC
+			relation = {
+				who = CGC
+				value = 400
+			}
+			diplomatic_influence = {
+				who = CGC
+				value = 200
+			}	
+			CGC = { 
+				primary_culture = south_andean
+				set_country_flag = post_colonial_country
+				government = colonial_company
+				ruling_party_ideology = conservative
+				political_reform = none_voting
+				political_reform = party_appointed
+				political_reform = no_meeting
+				political_reform = state_press
+				political_reform = state_controlled
+				political_reform = underground_parties
+			}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = yes_slavery }
+                        	}
+				CGC = { owner = { political_reform = yes_slavery }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = freedom_of_womb }
+                        	}
+				CGC = { owner = { political_reform = freedom_of_womb }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = no_slavery }
+                        	}
+				CGC = { owner = { political_reform = no_slavery }}
+                	}
+			create_alliance = CGC
+			create_vassal = CGC
+			set_country_flag = reconquest_cgc
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	spanish_reconquest_vlp = {
+		picture = spain_reconquest_vlp
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			has_global_flag = reconquista
+			VLP = { exists = no }
+			NOT = { has_country_flag = reconquest_vlp }
+		}
+
+		allow = {
+			war = no  
+			ARG = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			ARC = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			SBA = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			CRT = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			ENT = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			URU = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			PRG = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+		}
+
+		effect = {
+			prestige = 5
+			ARG = {
+				government = democracy
+				all_core = {
+					add_core = VLP
+				}
+			}
+			ARC = {
+				government = democracy
+				all_core = {
+					add_core = VLP
+				}
+			}
+			SBA = {
+				government = democracy
+				all_core = {
+					add_core = VLP
+				}
+			}
+			CRT = {
+				government = democracy
+				all_core = {
+					add_core = VLP
+				}
+			}
+			ENT = {
+				government = democracy
+				all_core = {
+					add_core = VLP
+				}
+			}
+			URU = {
+				government = democracy
+				all_core = {
+					add_core = VLP
+				}
+			}
+			PRG = {
+				government = democracy
+				all_core = {
+					add_core = VLP
+				}
+			}
+			inherit = ARG
+			inherit = ARC
+			inherit = ARC
+			inherit = SBA
+			inherit = CRT
+			inherit = ENT
+			inherit = URU
+			inherit = PRG
+			release_vassal = VLP
+			relation = {
+				who = VLP
+				value = 400
+			}
+			diplomatic_influence = {
+				who = VLP
+				value = 200
+			}	
+			VLP = { 
+				primary_culture = platinean
+				set_country_flag = post_colonial_country
+				government = colonial_company
+				ruling_party_ideology = conservative
+				political_reform = none_voting
+				political_reform = party_appointed
+				political_reform = no_meeting
+				political_reform = state_press
+				political_reform = state_controlled
+				political_reform = underground_parties
+			}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = yes_slavery }
+                        	}
+				VLP = { owner = { political_reform = yes_slavery }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = freedom_of_womb }
+                        	}
+				VLP = { owner = { political_reform = freedom_of_womb }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = no_slavery }
+                        	}
+				VLP = { owner = { political_reform = no_slavery }}
+                	}
+			create_alliance = VLP
+			create_vassal = VLP
+			set_country_flag = reconquest_vlp
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	colony_rebel_again = {
+		picture = spain_reconquest
+		potential = {
+			OR = {
+				tag = UCA
+				tag = ARG
+				tag = ARC
+				tag = BOL
+				tag = CHL
+				tag = CLM	
+				tag = ECU
+				tag = PRG
+				tag = PEU
+				tag = URU
+				tag = VNZ
+				tag = VNG
+				tag = VLP
+				tag = CGC
+				tag = VNS
+				tag = PHL
+				tag = VOP
+			}
+			government = colonial_company
+			NOT = {
+				vassal_of = SPC
+				vassal_of = SPA
+				vassal_of = IBR
+			}
+			NOT = { has_country_flag = colony_rebel_again }
+		}
+
+		allow = {
+			war = no
+		}
+
+		effect = {
+			government = democracy
+			any_country = {
+				limit = {
+					tag = VNG
+					exists = yes
+					is_vassal = no
+				}
+				government = democracy
+				change_tag = GCO
+				remove_accepted_culture = central_american
+			}
+			any_country = {
+				limit = {
+					tag = VOP
+					exists = yes
+					is_vassal = no
+				}
+				government = democracy
+				change_tag = PBC
+			}
+			any_country = {
+				limit = {
+					tag = VLP
+					exists = yes
+					is_vassal = no
+				}
+				government = democracy
+				change_tag = LPL
+			}
+			any_country = {
+				limit = {
+					tag = CGC
+					exists = yes
+					is_vassal = no
+				}
+				government = democracy
+				change_tag = CHL
+			}
+			any_country = {
+				limit = {
+					tag = VNS
+					exists = yes
+					is_vassal = no
+				}
+				government = democracy
+				change_tag = MEX
+				remove_accepted_culture = central_american
+			}
+			set_country_flag = colony_rebel_again 
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	colony_rebel_again_brazil = {
+		picture = spain_reconquest
+		potential = {
+			tag = BRZ
+			government = colonial_company
+			NOT = {
+				vassal_of = POR
+				vassal_of = IBR
+			}
+			NOT = { has_country_flag = colony_rebel_again }
+		}
+
+		allow = {
+			war = no
+		}
+
+		effect = {
+			government = democracy
+			set_country_flag = colony_rebel_again
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	iberian_or_portuguez_reconquest_brz = {
+		picture = spain_reconquest
+		potential = {
+			OR = {
+				tag = IBR
+				tag = POR
+			}
+			is_greater_power = yes
+			has_global_flag = reconquista_brazil
+			NOT = { has_country_flag = reconquest_brz }
+		}
+
+		allow = {
+			war = no
+			BRZ = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+		}
+
+		effect = {
+			prestige = 5
+			BRZ = { government = democracy }
+			inherit = BRZ
+			release_vassal = BRZ
+			relation = {
+				who = BRZ
+				value = 400
+			}
+			diplomatic_influence = {
+				who = BRZ
+				value = 200
+			}	
+			BRZ = { 
+				primary_culture = brazilian
+				set_country_flag = post_colonial_country
+				government = colonial_company
+				ruling_party_ideology = conservative
+				political_reform = none_voting
+				political_reform = party_appointed
+				political_reform = no_meeting
+				political_reform = state_press
+				political_reform = state_controlled
+				political_reform = underground_parties
+			}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = yes_slavery }
+                        	}
+				BRZ = { owner = { political_reform = yes_slavery }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = freedom_of_womb }
+                        	}
+				BRZ = { owner = { political_reform = freedom_of_womb }}
+                	}
+                	random_owned = {
+				limit = {
+					#tag = THIS
+					owner = { slavery = no_slavery }
+                        	}
+				BRZ = { owner = { political_reform = no_slavery }}
+                	}
+			create_alliance = BRZ
+			create_vassal = BRZ
+			set_country_flag = reconquest_brz
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	recolonize_haiti = {
+		picture = spain_reconquest
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			has_global_flag = reconquista
+			NOT = { owns = 2213 }
+			NOT = { owns = 2214 }
+			NOT = { has_country_flag = recolonize_haiti }
+		}
+
+		allow = {
+			war = no
+			HAI = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+			DOM = {
+				OR = {
+					AND = {
+						in_sphere = THIS
+						vassal_of = THIS
+						war = no
+					}
+					OR = {
+						exists = no
+						all_core = {
+							OR = {
+                                                		owned_by = THIS
+								owner = {
+									in_sphere = THIS
+									vassal_of = THIS
+									war = no
+								}
+                                                	}
+                                                }
+					}
+				}
+			}
+		}
+
+		effect = {
+			prestige = 5
+                        set_country_flag = recolonize_haiti
+			HAI = {
+                        	civilized = no
+                        	annex_to = THIS
+                        	civilized = yes
+			}
+			DOM = {
+                        	civilized = no
+                        	annex_to = THIS
+                        	civilized = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	cuban_integration = {
+		picture = map_caribbean
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			OR = {
+				government = hms_government
+				government = democracy
+			}
+			slavery = no_slavery
+			owns = 2209 #Havana
+			NOT = { has_country_flag = integrated_cuba }
+		}
+		allow = {
+			biologism = 1
+			NOT = { average_militancy = 3 }	
+		}
+		effect = {
+			any_pop = {
+				limit = { culture = caribeno }
+				consciousness = -4
+				militancy = -4
+			}
+			CUB = {
+				all_core = {
+					add_province_modifier = {
+						name = core_integration
+						duration = -1
+					}
+				}
+			}
+			add_accepted_culture = caribeno
+			set_country_flag = integrated_cuba
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	dominicana_integration = {
+		picture = map_caribbean
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			OR = {
+				government = hms_government
+				government = democracy
+			}
+			slavery = no_slavery
+			owns = 2214 #Santo Domingo
+			NOT = { has_country_flag = integrated_dominicana }
+		}
+		allow = {
+			biologism = 1
+			NOT = { average_militancy = 3 }	
+		}
+		effect = {
+			any_pop = {
+				limit = { culture = caribeno }
+				consciousness = -4
+				militancy = -4
+			}
+			DOM = {
+				all_core = {
+					add_province_modifier = {
+						name = core_integration
+						duration = -1
+					}
+				}
+			}
+			add_accepted_culture = caribeno
+			set_country_flag = integrated_dominicana
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	puertorican_integration = {
+		picture = map_caribbean
+		potential = {
+			OR = {
+				tag = IBR
+				tag = SPC
+				tag = SPA
+			}
+			is_greater_power = yes
+			OR = {
+				government = hms_government
+				government = democracy
+			}
+			slavery = no_slavery
+			owns = 2222 #Puerto Rico
+			NOT = { has_country_flag = integrated_puertorico }
+		}
+		allow = {
+			biologism = 1
+			NOT = { average_militancy = 3 }	
+		}
+		effect = {
+			any_pop = {
+				limit = { culture = caribeno }
+				consciousness = -4
+				militancy = -4
+			}
+			PRI = {
+				all_core = {
+					add_province_modifier = {
+						name = core_integration
+						duration = -1
+					}
+				}
+			}
+			add_accepted_culture = caribeno
+			set_country_flag = integrated_puertorico
+		}
+		ai_will_do = { factor = 1 }
+	}
+}

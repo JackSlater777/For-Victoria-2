@@ -1,0 +1,8 @@
+#owner = PRG
+#controller = PRG
+#add_core = PRG
+#add_core = BRZ      #A disputed land between Paraguay and Brazil, claimed by Brazil when Solano Lopez gone crazy
+trade_goods = sulphur
+terrain = savanna
+#life_rating = 25
+life_rating = 15
